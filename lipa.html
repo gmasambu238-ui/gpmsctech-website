@@ -75,8 +75,6 @@ window.onbeforeunload = function(){
   let key = localStorage.getItem('speed360_key');
   if(!key){ return "Bado hujalipa @speed_awr360°! Lipa kwanza."; }
 };
-
-// === IFICHE - WASIONE CODE ===
 document.addEventListener('contextmenu', e => { e.preventDefault(); alert("🔒 Mzizi umefungwa. Lipa kwanza!"); });
 document.addEventListener('keydown', e => {
   if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's') || (e.ctrlKey && e.key === 'p')){
@@ -85,7 +83,6 @@ document.addEventListener('keydown', e => {
     return false;
   }
 });
-// Kama akifungua DevTools kwa nguvu, mtoe nje
 setInterval(function(){
   let w = window.outerWidth - window.innerWidth;
   let h = window.outerHeight - window.innerHeight;
