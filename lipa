@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@speed_awr360° - MZIZI</title>
+</head>
+<body style="font-family:Arial;text-align:center;background:#000;color:white;padding:20px">
+
+<h1>⚡ @speed_awr360°</h1>
+<p id="status">Inaunganisha na Mzizi...</p>
+
+<!-- IMEFUNGWA - HAJALIPA -->
+<div id="locked" style="display:none;background:#fff;color:#000;padding:20px;border-radius:15px;max-width:420px;margin:auto">
+<h2 style="color:red;margin:0">🔒 UMEACHISHWA NA MZIZI</h2>
+<p>Umetumia @speed_awr360° bila kulipa.<br>Lipa ili uendelee kuunganishwa.</p>
+
+<div style="background:#00a651;padding:15px;border-radius:12px;color:white">
+<p style="margin:0"><b>Lipa Hapa - SCAN KULIPA</b></p>
+<img src="lipa.jpg" style="width:100%;max-width:300px;background:white;padding:10px;border-radius:10px;margin-top:10px">
+<p>LIPA NAMBA</p>
+<h1 style="background:white;color:black;padding:5px;border-radius:8px;letter-spacing:4px;margin:5px 0">10055686</h1>
+<h3 style="margin:5px 0">GARAJI JOSEPH MASAMBU</h3>
+<p style="font-size:12px">TIPS - CRDB BANK | Bei: 10,000 / Mwezi</p>
+</div>
+
+<p>Computer ID yako:</p>
+<b id="hwid" style="background:#eee;padding:8px;border-radius:8px;display:block"></b>
+<p style="font-size:12px">Tuma hii ID kwa @speed_awr360° baada ya kulipa, utapewa Key</p>
+
+<input id="keyInput" placeholder="Weka Licence Key" style="padding:12px;width:85%;border-radius:8px;border:1px solid #ccc">
+<br><br>
+<button onclick="fungua()" style="background:#ff0055;color:white;padding:12px 30px;border:none;border-radius:10px;font-size:16px">UNGANISHA TENA ✅</button>
+<p id="msg" style="color:red"></p>
+</div>
+
+<!-- IMEFUNGUKA - AMELIPA -->
+<div id="unlocked" style="display:none;background:#0a3d0a;padding:20px;border-radius:15px;max-width:420px;margin:auto;border:2px solid #00ff00">
+<h2 style="color:#00ff00">✅ UMEUNGANISHWA NA MZIZI</h2>
+<p id="welcome"></p>
+<p>Mzizi: @speed_awr360° | 360° | GPMSCTECH</p>
+<button onclick="alert('Browser Inafunguka...')" style="padding:10px">🌐 Browser</button>
+<button onclick="alert('WhatsApp Inafunguka...')" style="padding:10px">💬 WhatsApp</button>
+<button onclick="alert('Facebook Inafunguka...')" style="padding:10px">📘 Facebook</button>
+<br><br>
+<button onclick="localStorage.removeItem('speed360_key'); location.reload()" style="background:#333;color:white;padding:8px;border-radius:8px">Toka</button>
+</div>
+
+<script>
+// 1. TENGENEZA ID YA COMPUTER - Kila computer ID tofauti
+let hwid = localStorage.getItem('speed360_hwid');
+if(!hwid){
+  hwid = 'PC-' + Math.random().toString(36).substring(2,8).toUpperCase() + '-' + Date.now().toString().slice(-4);
+  localStorage.setItem('speed360_hwid', hwid);
+}
+document.getElementById('hwid').innerText = hwid;
+
+// 2. LIST YA WALIOLIPA - Wewe ndio unaongeza mtu akilipa
+let database = {
+  "SPEED-360-PC1": { name: "Mteja 1", siku: 30 },
+  "GPMS-VIP-2026": { name: "Mteja 2", siku: 30 },
+  "AWR-360-OWNER": { name: "@speed_awr360° - Bosi", siku: 3650 }
+};
+
+function fungua(){
+  let key = document.getElementById('keyInput').value.trim();
+  if(database[key]){
+    localStorage.setItem('speed360_key', key);
+    localStorage.setItem('speed360_start', Date.now());
+    checkMfumo();
+  } else {
+    document.getElementById('msg').innerText = "❌ Key si sahihi. Lipa kwanza kwa 10055686";
+  }
+}
+
+function checkMfumo(){
+  let key = localStorage.getItem('speed360_key');
+  let start = localStorage.getItem('speed360_start');
+
+  // Kama hana Key kabisa -> Mfungie
+  if(!key || !database[key]){
+    document.getElementById('locked').style.display = 'block';
+    document.getElementById('unlocked').style.display = 'none';
+    document.getElementById('status').innerText = "❌ Hujalipa - Umetenganishwa na Mzizi";
+    return;
+  }
+
+  // Angalia kama muda umeisha - Mfano siku 30 zimeisha?
+  let sikuZilizopita = (Date.now() - Number(start)) / (1000*60*60*24);
+  let sikuRuhusiwa = database[key].siku;
+
+  if(sikuZilizopita > sikuRuhusiwa){
+    // Muda umeisha - Mtoe kwenye Mzizi
+    localStorage.removeItem('speed360_key');
+    document.getElementById('locked').style.display = 'block';
+    document.getElementById('unlocked').style.display = 'none';
+    document.getElementById('status').innerText = "⏰ Muda wako umeisha! Lipa tena kuendelea";
+    document.getElementById('msg').innerText = "Muda wa siku " + sikuRuhusiwa + " umeisha. Lipa tena.";
+    return;
+  }
+
+  // Amelipa na muda bado upo - Mfungulie
+  document.getElementById('locked').style.display = 'none';
+  document.getElementById('unlocked').style.display = 'block';
+  let zimebaki = Math.floor(sikuRuhusiwa - sikuZilizopita);
+  document.getElementById('status').innerText = "✅ Umeunganishwa na Mzizi";
+  document.getElementById('welcome').innerText = "Karibu " + database[key].name + "! Siku zilizobaki: " + zimebaki;
+}
+
+// Anza kuangalia mara moja ukifungua ukurasa
+checkMfumo();
+</script>
+// KIFUNGO KALI - Weka hii mwishoni mwa <script> yako
+
+// 1. Angalia kila sekunde 5 kama bado amelipa
+setInterval(() => {
+  checkMfumo();
+}, 5000);
+
+// 2. Usiruhusu mtu kufunga ukurasa kwa kubonyeza Back au Refresh ili kutoroka
+window.onbeforeunload = function(){
+  let key = localStorage.getItem('speed360_key');
+  if(!key){
+    return "Bado hujalipa @speed_awr360°! Lipa kwanza.";
+  }
+};
+
+// 3. Zuia kubofya kulia na F12 ili wasiibe Key
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if(e.key === 'F12' || (e.ctrlKey && e.key === 'u')){
+    e.preventDefault();
+    alert("🔒 Mzizi umefungwa. Lipa kwanza!");
+  }
+});
+</body>
+setInterval(() => { checkMfumo(); }, 5000);
+
+window.onbeforeunload = function(){
+  let key = localStorage.getItem('speed360_key');
+  if(!key){
+    return "Bado hujalipa @speed_awr360°! Lipa kwanza.";
+  }
+};
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if(e.key === 'F12' || (e.ctrlKey && e.key === 'u')){
+    e.preventDefault();
+    alert("🔒 Mzizi umefungwa. Lipa kwanza!");
+  }
+});
+</html>
