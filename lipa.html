@@ -4,97 +4,95 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>@speed_awr360° - MZIZI</title>
+<style>
+  *{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; }
+  input{ -webkit-user-select:text; user-select:text; }
+</style>
 </head>
-<body style="font-family:Arial;text-align:center;background:#000;color:white;padding:20px;margin:0">
+<body style="font-family:Arial;text-align:center;background:#000;color:white;padding:20px;margin:0" oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 
 <h1 style="color:#FFD700">⚡ @speed_awr360° ⚡</h1>
-<p id="status">Inaunganisha na Mzizi...</p>
+<p id="status">Inaunganisha kwenye Mzizi...</p>
 
 <div id="locked" style="display:none;background:#fff;color:#000;padding:20px;border-radius:15px;max-width:420px;margin:auto">
-  <h2 style="color:red;margin:0">🔒 UMEACHIWA NA MZIZI 🔒</h2>
-  <p>Khetumia @speed_awr360° bila kulipa, hii Lipa ili uendelee kuunganishwa.</p>
+  <h2 style="color:red;margin:0">🔒 UMEFUNGWA NJE YA MZIZI 🔒</h2>
+  <p>Unatumia @speed_awr360° bila kulipa, tafadhali Lipa ili uendelee kuunganishwa.</p>
 
   <div style="background:#000;color:#fff;padding:15px;border-radius:12px">
     <p style="margin:0">🏦 Lipa Hapa - TIPS - CRDB BANK | Bei: 10,000 / Mwezi</p>
+    <img src="lipa.jpg" style="width:100%;max-width:300px;border-radius:10px;border:2px solid #00A859;margin-top:10px" alt="Scan kulipa">
+    <p style="font-size:13px;margin:5px 0">📷 Scan hapa kulipa</p>
     <h1 style="background:white;color:black;padding:5px;border-radius:8px;letter-spacing:4px;margin:8px 0">10055686</h1>
-    <h3 style="margin:5px 0">SARAJI JOSEPH MASAMBU</h3>
+    <h3 style="margin:5px 0">GARAJI JOSEPH MASAMBU</h3>
     <p style="font-size:12px;margin:0">TIPS - CRDB BANK | Bei: 10,000 / Mwezi</p>
     <br>
-    <button onclick="lipaSasa()" style="background:#00A859;color:white;padding:14px 30px;border:none;border-radius:10px;font-weight:bold;font-size:16px;width:100%">💰 PAY NOW - 10,000 TZS</button>
+    <button onclick="lipaSasa()" style="background:#00A859;color:white;padding:14px 30px;border:none;border-radius:10px;font-weight:bold;font-size:16px;width:100%">💰 LIPA SASA - 10,000 TZS</button>
     <p id="payMsg" style="font-size:13px;color:#00FF88"></p>
   </div>
 
-  <p><b>Computer ID yako:</b><br><span id="cid" style="background:#eee;padding:5px;border-radius:5px;display:block"></span></p>
-  <p style="font-size:12px">Tuma hii ID kwa @speed_awr360° baada ya kulipa, utapewa Key.</p>
-
-  <input id="keyInput" placeholder="Weka Licence Key" style="padding:12px;width:85%;border-radius:8px;border:1px solid #ccc">
+  <p style="font-size:12px">Baada ya kulipa, tuma picha ya muamala kwa @speed_awr360° utapewa Key ya kuingia.</p>
+  <input id="keyInput" placeholder="Weka Key ya Leseni" style="padding:12px;width:85%;border-radius:8px;border:1px solid #ccc">
   <br><br>
-  <button onclick="fungua()" style="background:#FF0055;color:white;padding:12px 30px;border:none;border-radius:8px;font-weight:bold">UNGANISHA TENA - INGIA</button>
+  <button onclick="fungua()" style="background:#FF0055;color:white;padding:12px 30px;border:none;border-radius:8px;font-weight:bold">INGIA SASA</button>
   <p id="msg" style="color:red"></p>
 </div>
 
 <div id="unlocked" style="display:none;background:#0a3d0a;padding:20px;border-radius:15px;max-width:420px;margin:auto">
-  <h2>✅ KARIBU TENA MZIZI!</h2>
+  <h2>✅ KARIBU TENA KWENYE MZIZI!</h2>
   <p>Umelipa, unaweza kuendelea kutumia @speed_awr360°</p>
   <a href="index.html" style="background:#FFD700;color:black;padding:12px 25px;border-radius:8px;display:inline-block;text-decoration:none;font-weight:bold">INGIA KWENYE MZIZI ➡️</a>
 </div>
 
 <script>
-let cid = localStorage.getItem('mzizi_cid');
-if(!cid){
-  cid = 'MZIZI-' + Math.random().toString(36).substring(2,8).toUpperCase();
-  localStorage.setItem('mzizi_cid', cid);
-}
-document.getElementById('cid').innerText = cid;
-
 function checkMfumo(){
   let key = localStorage.getItem('speed360_key');
   if(key){
     document.getElementById('locked').style.display = 'none';
     document.getElementById('unlocked').style.display = 'block';
-    document.getElementById('status').innerText = '✅ Umelipa - Mzizi umefunguka';
+    document.getElementById('status').innerText = '✅ Umelipa - Mzizi umefunguliwa';
   } else {
     document.getElementById('locked').style.display = 'block';
     document.getElementById('unlocked').style.display = 'none';
     document.getElementById('status').innerText = '🔒 Mzizi umefungwa. Lipa kwanza!';
   }
 }
-
 function lipaSasa(){
   let namba = "10055686";
   navigator.clipboard.writeText(namba);
-  document.getElementById('payMsg').innerText = "✅ Namba 10055686 imekopiwa! Lipa kwa TIPS - CRDB, kisha tuma screenshot WhatsApp.";
-  setTimeout(()=>{
-    window.open("https://wa.me/255000000000?text=Nimelipa%2010000%20Mzizi%20ID%20yangu%20ni%20" + cid, "_blank");
-  }, 1000);
+  document.getElementById('payMsg').innerText = "✅ Namba 10055686 imekopiwa! Lipa kwa TIPS - CRDB, kisha tuma picha ya muamala WhatsApp.";
+  setTimeout(()=>{ window.open("https://wa.me/255000000000?text=Nimelipa%2010000%20Mzizi", "_blank"); }, 1000);
 }
-
 function fungua(){
   let v = document.getElementById('keyInput').value.trim();
-  if(v.length < 5){
-    document.getElementById('msg').innerText = 'Weka Key sahihi uliyopewa!';
-    return;
-  }
+  if(v.length < 5){ document.getElementById('msg').innerText = 'Weka Key sahihi uliyopewa!'; return; }
   localStorage.setItem('speed360_key', v);
   checkMfumo();
-  alert('Karibu! Mzizi umefunguka.');
+  alert('Karibu! Mzizi umefunguliwa.');
 }
-
 checkMfumo();
 setInterval(() => { checkMfumo(); }, 5000);
-
 window.onbeforeunload = function(){
   let key = localStorage.getItem('speed360_key');
   if(!key){ return "Bado hujalipa @speed_awr360°! Lipa kwanza."; }
 };
 
-document.addEventListener('contextmenu', e => e.preventDefault());
+// === IFICHE - WASIONE CODE ===
+document.addEventListener('contextmenu', e => { e.preventDefault(); alert("🔒 Mzizi umefungwa. Lipa kwanza!"); });
 document.addEventListener('keydown', e => {
-  if(e.key === 'F12' || (e.ctrlKey && e.key === 'u')){
+  if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's') || (e.ctrlKey && e.key === 'p')){
     e.preventDefault();
-    alert("🔒 Mzizi umefungwa. Lipa kwanza!");
+    alert("🔒 Hairuhusiwi! Lipa kwanza.");
+    return false;
   }
 });
+// Kama akifungua DevTools kwa nguvu, mtoe nje
+setInterval(function(){
+  let w = window.outerWidth - window.innerWidth;
+  let h = window.outerHeight - window.innerHeight;
+  if(w > 160 || h > 160){
+    document.body.innerHTML = '<h1 style="text-align:center;padding:50px;color:red">🔒 UMEFUNGWA! Lipa kwanza @speed_awr360°</h1>';
+  }
+}, 1000);
 </script>
 </body>
 </html>
