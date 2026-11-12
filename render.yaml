@@ -1,20 +1,16 @@
 services:
-  - type: web
+    - type: web
     name: server-001
     env: node
     plan: free
     buildCommand: npm install
-    startCommand: node server.js
-
+    startCommand: npm start
     envVars:
-      - key: EMAIL_USER
-        sync: false
-
-      - key: EMAIL_PASS
-        sync: false
-
-      - key: VERIFICATION_EMAIL
-        sync: false
-
-      - key: SECOND_EMAIL
+            - key: EMAIL_USER
+        value: gmasambu238@gmail.com
+            - key: VERIFICATION_EMAIL
+        value: georgemasambu64@gmail.com
+            - key: SECOND_EMAIL
+        value: gmasambu238@gmail.com
+            - key: EMAIL_PASS
         sync: false
