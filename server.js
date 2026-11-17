@@ -11,6 +11,32 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ============================================
+// GPMSCTECH SYSTEM SHUTDOWN - Kiteknolojia
+// ============================================
+app.get("/healthz", (req, res) => {
+  res.status(200).json({
+    service: "GPMSCTECH SERVER-001",
+    health: "OK",
+    systemStatus: process.env.GPMSCTECH_SYSTEM_STATUS === "CLOSED" ? "CLOSED" : "OPEN"
+  });
+});
+
+app.use((req, res, next) => {
+  const status = (process.env.GPMSCTECH_SYSTEM_STATUS || "OPEN").toUpperCase();
+  // Healthz ibaki wazi ili tujue server iko hai
+  if (req.path === "/healthz") return next();
+  if (status === "CLOSED") {
+    return res.status(503).json({
+      system: "GPMSCTECH",
+      server: "SERVER-001",
+      status: "SYSTEM_CLOSED",
+      message: "Huduma za mfumo zimesimamishwa kwa sababu za kiteknolojia."
+    });
+  }
+  next();
+});
+
 const PORT = process.env.PORT || 3000;
 
 const VERIFICATION_EMAIL = (process.env.VERIFICATION_EMAIL || "").trim().toLowerCase();
