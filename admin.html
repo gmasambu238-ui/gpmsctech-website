@@ -1,50 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="sw">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GPMSc Tech Admin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - GPMSCTECH</title>
 <style>
-body{font-family:Arial;background:#f4f6f9;margin:0;padding:15px}
-h2{text-align:center;color:#0a58ca}
-.card{background:white;padding:12px;margin:10px 0;border-radius:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
-.paid{color:green;font-weight:bold} .unpaid{color:red;font-weight:bold}
-button{padding:8px 14px;border:none;border-radius:6px;color:white;font-weight:bold}
-.btn-on{background:green} .btn-off{background:red}
+body{font-family:Arial;background:#f4f4f4;margin:0;padding:20px}
+h1{color:#0b3d91;text-align:center}
+.card{background:#fff;padding:15px;margin:10px 0;border-radius:10px;box-shadow:0 2px 5px #ccc}
+button{background:#0b3d91;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer}
+button.del{background:#d00}
 </style>
 </head>
 <body>
-<h2>GPMSc Tech - ADMIN</h2>
-<div id="list">Inapakia...</div>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-const firebaseConfig = { apiKey: "AIzaSy...WEKA YAKO", authDomain: "ole.firebaseapp.com", projectId: "WEKA YAKO" };
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-async function loadUsers(){
-  const snap = await getDocs(collection(db, "users"));
-  let html="";
-  snap.forEach(d=>{
-    const u=d.data(); const id=d.id;
-    const st=u.isPaid?'<span class=paid>AMELIPA ✅</span>':'<span class=unpaid>HAJALIPA ❌</span>';
-    const btn=u.isPaid?`<button class=btn-off onclick="toggle('${id}',false)">ZUIA</button>`:`<button class=btn-on onclick="toggle('${id}',true)">RUHUSU</button>`;
-    html+=`<div class=card><div><b>${u.email||id}</b><br>${st}</div>${btn}</div>`;
-  });
-  document.getElementById('list').innerHTML=html||"Hakuna mteja";
-}
-window.toggle=async(id,val)=>{ await updateDoc(doc(db,"users",id),{isPaid:val}); loadUsers(); }
-loadUsers();
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<h1>GPMSCTECH - Admin Panel</h1>
+<p style="text-align:center" id="status">Inapakia oda...</p>
+<div id="list"></div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script>
-emailjs.init("VjAQ-puV445mQlrTy");
-function sendAdminOTP(email, otpCode){
-  return emailjs.send("service_3lq3gyt","template_kq5gynl",{
-    to_email: email,
-    passcode: otpCode,
-    time: "15 minutes"
+const firebaseConfig = {
+  apiKey: "AIzaSyBYmWzzWfvHkuRgHpQhvDzj6m0o8oRzHrw",
+  authDomain: "gpmsctech-18abb.firebaseapp.com",
+  projectId: "gpmsctech-18abb",
+  storageBucket: "gpmsctech-18abb.firebasestorage.app",
+  messagingSenderId: "554624850081",
+  appId: "1:554624850081:web:ac5884fdd893a540ed78e0",
+  measurementId: "G-G1CX44BC95"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+function loadOda(){
+  db.collection("orders").orderBy("createdAt","desc").onSnapshot((snap)=>{
+    const list = document.getElementById("list");
+    document.getElementById("status").innerText = "Oda zilizopatikana: " + snap.size;
+    list.innerHTML = "";
+    if(snap.empty){ list.innerHTML = "<p>Hakuna oda bado.</p>"; return; }
+    snap.forEach((doc)=>{
+      const d = doc.data();
+      list.innerHTML += `<div class="card">
+        <b>${d.name || d.jina || 'Mteja'}</b> - ${d.phone || d.sim || ''}<br>
+        Email: ${d.email || ''}<br>
+        Huduma: ${d.service || d.huduma || ''}<br>
+        Ujumbe: ${d.message || d.ujumbe || ''}<br>
+        <small>${d.createdAt ? d.createdAt.toDate() : ''}</small><br><br>
+        <button class="del" onclick="futa('${doc.id}')">Futa</button>
+      </div>`;
+    });
+  }, (err)=>{
+    document.getElementById("status").innerText = "Error: " + err.message;
   });
 }
+function futa(id){
+  if(confirm("Futa hii oda?")){ db.collection("orders").doc(id).delete(); }
+}
+loadOda();
 </script>
 </body>
 </html>
