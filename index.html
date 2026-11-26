@@ -3,84 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@speed_awr360° - Lipa Kwanza</title>
+<title>@speed_awr360° - THE GLOBAL POSITIVE MIND SET CENTER</title>
+<meta name="robots" content="noindex,nofollow">
 <style>
-body{font-family:sans-serif;background:#0f172a;color:white;margin:0;padding:20px;text-align:center}
-.lock-box{background:white;color:#111;max-width:420px;margin:20px auto;padding:20px;border-radius:16px}
+body{font-family:sans-serif;background:#0f172a;color:white;margin:0;padding:16px;text-align:center}
+.top-praise{background:#facc15;color:#111;padding:14px;border-radius:12px;font-weight:bold;max-width:620px;margin:0 auto 14px;line-height:1.5}
+.lock-box,.qr-box,.info-box{background:white;color:#111;max-width:480px;margin:10px auto;padding:20px;border-radius:16px}
+.qr-box img{width:220px;height:220px;border:3px solid #0f172a;border-radius:12px;padding:8px}
+.qr-grid{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.qr-item{flex:1;min-width:180px}
 input,select,button{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #ccc;font-size:16px}
 button{background:#16a34a;color:white;border:none;font-weight:bold;cursor:pointer}
-.verse{font-style:italic;opacity:.8}
 .pay{background:#fff3cd;padding:12px;border-radius:8px;display:none;white-space:pre-line;text-align:left}
+.translate-box{background:white;padding:10px;border-radius:12px;max-width:480px;margin:0 auto 10px;color:#111}
+#secureContent{display:none;background:white;color:#111;max-width:480px;margin:10px auto;padding:20px;border-radius:16px}
+#adminPanel{display:none;background:#111;color:white;max-width:480px;margin:10px auto;padding:20px;border-radius:16px;text-align:left}
+#adminPanel input{background:#222;color:white;border:1px solid #444}
+#adminPanel h3{color:#facc15;text-align:center}
+.footer-info{font-size:12px;color:#94a3b8;max-width:480px;margin:14px auto;line-height:1.6}
+.footer-info b{color:white}
 </style>
 </head>
 <body>
-<div id="lockScreen">
-<h1>@speed_awr360°</h1>
-<p class="verse">Upendo wa kweli kwa Mungu unaonekana kwa kuwajali wahitaji.</p>
-<div class="lock-box">
-<h2>🔒 Mfumo Umefungwa</h2>
-<p>Lipa <b>20,000 TZS / mwezi</b> ili uingie.</p>
-<p><b>Lipa Namba:</b> 10055686</p>
-<p><b>Jina:</b> GARAJI JOSEPH MASAMBU</p>
-<p><b>Bank:</b> CRDB BANK PLC</p>
-<input id="phone" type="tel" placeholder="Namba yako - mfano 0744000000">
+
+<div class="top-praise">
+Praise And Glory To God The Father Almighty,<br>
+Jesus Christ God Almighty,<br>
+And The Holy Spirit God Almighty, Amen.
+</div>
+
+<!-- Bonyeza mara 5 hapa kuingia Admin - Wateja hawaoni -->
+<h1 id="logoTitle" style="cursor:pointer" title="@speed_awr360°">@speed_awr360°</h1>
+<p style="font-size:13px;opacity:.8">THE GLOBAL POSITIVE MIND SET CENTER<br>Karibu / Welcome</p>
+
+<div class="translate-box">
+<p>🌍 Chagua Lugha Yako / Choose Your Language - Google Chrome Translate</p>
+<div id="google_translate_element"></div>
+</div>
+
+<div class="qr-box">
+<h2>📱 Scan Hapa / Scan Here - @speed_awr360°</h2>
+<div class="qr-grid">
+<div class="qr-item">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fgmasambu238-ui.github.io%2Fgpmsctech-website%2F&color=0f172a&bgcolor=ffffff">
+<p><b>1. QR ya WEBSITE / Website QR</b><br>Scan kuingia / Scan to Enter</p>
+</div>
+<div class="qr-item">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Lipa%20Namba%3A%2010055686%20-%20GARAJI%20JOSEPH%20MASAMBU%20-%20CRDB%20BANK%20PLC%20-%2020000%20TZS&color=16a34a&bgcolor=ffffff">
+<p><b>2. QR ya KULIPA / Payment QR</b><br>Lipa Namba: 10055686<br>GARAJI JOSEPH MASAMBU - CRDB</p>
+</div>
+</div>
+</div>
+
+<!-- KWA WATEJA TU - CUSTOMER ONLY -->
+<div id="lockBox" class="lock-box">
+<h2>🔒 Mfumo Umefungwa / System Locked</h2>
+<p>Lipa <b>20,000 TZS / mwezi</b> ili uingie.<br>Pay <b>20,000 TZS / month</b> to enter.</p>
+<p><b>Lipa Namba / Lipa Number:</b> 10055686<br><b>Jina / Name:</b> GARAJI JOSEPH MASAMBU<br><b>Bank:</b> CRDB BANK PLC</p>
+<input id="phone" type="tel" placeholder="Namba yako / Your Number - 0744000000" autocomplete="off">
 <select id="months">
-<option value="1">Mwezi 1 - 20,000 TZS</option>
-<option value="2">Miezi 2 - 40,000 TZS</option>
-<option value="3">Miezi 3 - 60,000 TZS</option>
-<option value="6">Miezi 6 - 120,000 TZS</option>
-<option value="12">Mwaka 1 - 240,000 TZS</option>
+<option value="1">Mwezi 1 / Month 1 - 20,000 TZS</option>
+<option value="2">Miezi 2 / Months 2 - 40,000 TZS</option>
+<option value="3">Miezi 3 / Months 3 - 60,000 TZS</option>
+<option value="6">Miezi 6 / Months 6 - 120,000 TZS</option>
+<option value="12">Mwaka 1 / Year 1 - 240,000 TZS</option>
 </select>
-<button onclick="showPay()">1. Pata Maelekezo ya Kulipa</button>
+<button onclick="showPay()">1. Pata Maelekezo ya Kulipa / Get Payment Instructions</button>
 <p id="payBox" class="pay"></p>
-<input id="ref" type="text" placeholder="Weka Reference ya SMS ya CRDB" style="display:none">
-<button onclick="sendRef()" id="btnRef" style="display:none">2. Tuma Reference</button>
+<input id="ref" type="text" placeholder="Weka Reference ya SMS ya CRDB / Enter CRDB SMS Reference" style="display:none" autocomplete="off">
+<button onclick="sendRef()" id="btnRef" style="display:none">2. Tuma Reference / Send Reference</button>
 <p id="msg"></p>
-<button onclick="checkAccess()" style="background:#2563eb">Angalia Kama Nimeruhusiwa</button>
+<button onclick="checkAccess()" style="background:#2563eb">Angalia Kama Nimeruhusiwa / Check If I Am Allowed</button>
+</div>
+
+<div id="secureContent">
+<h2>✅ Karibu / Welcome @speed_awr360°</h2>
+<p>Reference yako imehakikiwa. Umefunguliwa! / Your Reference is verified. You are unlocked!</p>
+<p><b>Praise And Glory To God The Father Almighty, Jesus Christ God Almighty, And The Holy Spirit God Almighty, Amen.</b></p>
+<button onclick="logoutSecure()" style="background:#dc2626">Toka / Logout - Lock Tena / Lock Again</button>
+</div>
+
+<!-- ADMIN PANEL ILIYOFICHWA - HAIONEKANI KWA WATEJA -->
+<div id="adminPanel">
+<h3>🔐 ADMIN LOGIN - THE GLOBAL POSITIVE MIND SET CENTER</h3>
+<p style="font-size:12px;text-align:center">Watu wasioidhinishwa wamezuiwa / Unauthorized persons are blocked.<br>Mwenye mfumo pekee anaweza kuingia / Only the Owner can enter.</p>
+<div id="adminStep1">
+<input id="adminEmail" type="email" placeholder="Email Address - Admin Only">
+<input id="adminPass" type="password" placeholder="Password - Admin Only">
+<button onclick="adminLoginStep1()" style="background:#facc15;color:#111">Ingia / Login - Hatua 1 / Step 1</button>
+</div>
+<div id="adminStep2" style="display:none">
+<p style="font-size:13px">Nambari ya uthibitisho (2FA) imetumwa. Ingiza hapa chini:<br>2FA Code sent. Enter below:</p>
+<input id="admin2FA" type="text" placeholder="2FA Code - 6 Digits" maxlength="6">
+<button onclick="adminLoginStep2()" style="background:#16a34a">Thibitisha / Verify - Hatua 2 / Step 2</button>
+<button onclick="adminBack()" style="background:#444">Rudi / Back</button>
+</div>
+<p id="adminMsg" style="font-size:13px;color:#fca5a5"></p>
+<div id="adminDashboard" style="display:none">
+<hr>
+<p><b>Founder & CEO:</b> Garaji Joseph Masambu</p>
+<p><b>Business:</b> THE GLOBAL POSITIVE MIND SET CENTER</p>
+<p><b>TRA TIN:</b> 150-263-719</p>
+<p><b>Email:</b> gmasambu238@gmail.com</p>
+<p><b>Reference zilizotumika / Used References:</b> <span id="usedRefs">-</span></p>
+<p><b>Wateja waliotuma Reference / Logs:</b></p>
+<p id="adminLogs" style="font-size:12px;white-space:pre-line;background:#222;padding:10px;border-radius:8px">Hakuna / None</p>
+<button onclick="adminLogout()" style="background:#dc2626">Toka Admin / Admin Logout</button>
 </div>
 </div>
-<div id="mainSystem" style="display:none">
-<h1>Karibu @speed_awr360° 🎉</h1>
-<p>Umelipa. Sasa unaweza kutumia mfumo.</p>
-<p id="expiry"></p>
-<div><p>Hapa ndipo vipindi vya AWR vinaonekana.</p></div>
-<button onclick="logout()">Toka</button>
+
+<div class="info-box">
+<h3>ℹ️ Kuhusu Mfumo / About The System</h3>
+<p><b>Jina la Biashara / Business Name:</b><br>THE GLOBAL POSITIVE MIND SET CENTER</p>
+<p><b>Mwanzilishi na Mkurugenzi Mkuu Mtendaji / Founder & CEO:</b><br>Garaji Joseph Masambu</p>
+<p><b>TRA TIN NUMBER:</b><br>150-263-719</p>
+<p><b>Email ya Mfumo / System Email:</b><br>gmasambu238@gmail.com</p>
+<p style="font-size:12px;color:#666">Mfumo huu ni mali ya Garaji Joseph Masambu. Mtu yeyote anayedai mfumo ni wake lazima athibitishe kwa Email, Password na 2FA. Akishindwa ni Hacker.<br>This system belongs to Garaji Joseph Masambu. Anyone claiming ownership must verify with Email, Password and 2FA. If they fail, they are a Hacker.</p>
 </div>
+
+<div class="footer-info">
+<b>THE GLOBAL POSITIVE MIND SET CENTER</b><br>
+Founder & CEO: Garaji Joseph Masambu | TRA TIN: 150-263-719<br>
+Email: gmasambu238@gmail.com | © 2026 @speed_awr360°
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'sw',includedLanguages:'en,fr,es,pt,de,it,nl,ru,zh-CN,ja,ko,hi,ar,tr,pl,uk,ro,hu,cs,sv,da,fi,no,el,he,th,vi,id,ms,tl,bn,ta,te,mr,ur,fa,am,ha,yo,sw',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element');}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <script>
-function showPay(){
-let phone=document.getElementById("phone").value.trim();
-let m=document.getElementById("months").value;
-if(!/^0[67][0-9]{8}$/.test(phone)){document.getElementById("msg").innerText="Weka namba sahihi. Mfano 0744000000";return;}
-let amount=m*20000;
-let box=document.getElementById("payBox");
-box.style.display="block";
-box.innerText="Lipa "+amount+" TZS kwenda Lipa Namba 10055686\nJina: GARAJI JOSEPH MASAMBU\nBank: CRDB BANK PLC\n\nBaada ya kulipa, ingiza Reference ya SMS.";
-document.getElementById("ref").style.display="block";
-document.getElementById("btnRef").style.display="block";
-document.getElementById("msg").innerText="Sasa lipa, halafu weka Reference.";
-localStorage.setItem("awr_phone",phone);
-localStorage.setItem("awr_months",m);
-localStorage.setItem("awr_amount",amount);
+// ===== SECURITY ILIYOFICHWA - HAIONEKANI KWA WATEJA =====
+// Admin Credentials - BADILISHA PASSWORD HII BAADA YA KU-INGIA MARA YA KWANZA
+const ADMIN_EMAIL = "gmasambu238@gmail.com";
+const ADMIN_PASS = "GPMSc@2026-GodAlmighty"; // <-- Badilisha hii ukitaka password nyingine
+const ADMIN_2FA = "263719"; // 2FA Code - Namba 6 za mwisho za TIN yako 150-263-719
+const VALID_REFS = ["34796","38065","54407","19521","10096","78967","56067","58527","74622","37300","41573","90845"];
+const SECRET_KEY="AWR360-GOD-ALMIGHTY-2026-SECURE";
+
+// Zuia Inspect kwa kimya - bila kumwambia mteja
+document.addEventListener('contextmenu', e=>{e.preventDefault(); return false;});
+document.addEventListener('keydown', e=>{ if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='J'||e.key==='C'))||(e.ctrlKey&&e.key==='u')){e.preventDefault(); return false;} });
+
+// Fungua Admin kwa kubonyeza Logo mara 5 au Ctrl+Shift+A - Wateja hawaijui
+let logoClicks=0;
+document.getElementById("logoTitle").addEventListener("click",()=>{
+  logoClicks++; if(logoClicks>=5){logoClicks=0; toggleAdmin();}
+  setTimeout(()=>{logoClicks=0;},3000);
+});
+document.addEventListener('keydown', e=>{ if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault(); toggleAdmin();} });
+function toggleAdmin(){
+  let p=document.getElementById("adminPanel");
+  p.style.display = p.style.display==="block" ? "none" : "block";
+  window.scrollTo({top:p.offsetTop-20,behavior:'smooth'});
 }
-function sendRef(){
-let r=document.getElementById("ref").value.trim();
-if(r.length<4){document.getElementById("msg").innerText="Weka Reference ya SMS ya CRDB.";return;}
-localStorage.setItem("awr_ref",r);
-localStorage.setItem("awr_status","PENDING");
-document.getElementById("msg").innerText="Reference imepokelewa: "+r+". Subiri uthibitisho wa Admin. Ukishathibitishwa bonyeza Angalia Kama Nimeruhusiwa.";
+
+// ADMIN - HATUA 1: Email + Password
+let adminAttempts=0;
+function adminLoginStep1(){
+  let em=document.getElementById("adminEmail").value.trim().toLowerCase();
+  let pw=document.getElementById("adminPass").value;
+  if(em!==ADMIN_EMAIL || pw!==ADMIN_PASS){
+    adminAttempts++;
+    if(adminAttempts>=3){document.getElementById("adminMsg").innerText="⛔ Umejaribu mara 3 bila mafanikio. Umewekwa BLOCKED. Wewe ni HACKER kama si Mmiliki. / You tried 3 times and failed. You are BLOCKED. You are a HACKER if you are not the Owner."; document.getElementById("adminStep1").style.display="none"; localStorage.setItem("awr_admin_blocked","1"); return;}
+    document.getElementById("adminMsg").innerText="⛔ Email au Password si sahihi. Jaribio "+adminAttempts+"/3. Kama si Mmiliki, wewe ni Hacker. / Wrong Email or Password. Attempt "+adminAttempts+"/3. If you are not the Owner, you are a Hacker.";
+    return;
+  }
+  if(localStorage.getItem("awr_admin_blocked")==="1"){document.getElementById("adminMsg").innerText="⛔ Akaunti imefungwa kwa majaribio mabaya. Wasiliana na Mmiliki halisi. / Account locked due to bad attempts."; return;}
+  document.getElementById("adminMsg").innerText="✅ Email na Password sahihi. Sasa ingiza 2FA Code. / Email and Password correct. Now enter 2FA Code.";
+  document.getElementById("adminStep1").style.display="none";
+  document.getElementById("adminStep2").style.display="block";
 }
-function checkAccess(){
-if(localStorage.getItem("awr_status")==="ACTIVE"){
-document.getElementById("lockScreen").style.display="none";
-document.getElementById("mainSystem").style.display="block";
-document.getElementById("expiry").innerText="Subscription yako iko ACTIVE.";
-}else{
-document.getElementById("msg").innerText="Bado hujathibitishwa. Umetuma Reference? Subiri Admin akuthibitishe.";
+// ADMIN - HATUA 2: 2FA
+function adminLoginStep2(){
+  let code=document.getElementById("admin2FA").value.trim();
+  if(code!==ADMIN_2FA){
+    document.getElementById("adminMsg").innerText="⛔ 2FA Code si sahihi. Wewe ni HACKER. / Wrong 2FA Code. You are a HACKER.";
+    return;
+  }
+  document.getElementById("adminMsg").innerText="✅ Karibu Mmiliki Halisi - Garaji Joseph Masambu. / Welcome True Owner - Garaji Joseph Masambu.";
+  document.getElementById("adminStep2").style.display="none";
+  document.getElementById("adminDashboard").style.display="block";
+  // Onyesha Logs
+  let logs=JSON.parse(localStorage.getItem("awr_logs")||"[]");
+  document.getElementById("adminLogs").innerText = logs.length? logs.map(l=>l.phone+" - Ref: "+l.ref+" - "+l.time).join("\n") : "Hakuna / None";
+  document.getElementById("usedRefs").innerText = localStorage.getItem("awr_used_ref")||"-";
 }
-}
-function logout(){localStorage.removeItem("awr_status");location.reload();}
-// Kwa kujaribu: andika ACTIVE kwenye console ili kufungua
-if(localStorage.getItem("awr_status")==="ACTIVE"){checkAccess();}
+function adminBack(){document.getElementById("adminStep2").style.display="none"; document.getElementById("adminStep1").style.display="block";}
+function adminLogout(){document.getElementById("adminPanel").style.display="none"; document.getElementById("adminDashboard").style.display="none"; document.getElementById("adminStep1").style.display="block"; document.getElementById("adminStep2").style.display="none"; document.getElementById("adminMsg").innerText=""; location.reload();}
+
+// WATEJA - KULIPA
+function isTokenValid(){try{let tok=localStorage.getItem("awr_secure_token"); let exp=parseInt(localStorage.getItem("awr_expire")||"0"); if(!tok||!exp) return false; if(Date.now()>exp) return false; if(!atob(tok).includes(SECRET_KEY)) return false; if(localStorage.getItem("awr_status")!=="ACTIVE") return false; return true;}catch(e){return false;}}
+function showPay(){let phone=document.getElementById("phone").value.trim(); let m=document.getElementById("months").value; if(!/^0[67][0-9]{8}$/.test(phone)){document.getElementById("msg").innerText="Weka namba sahihi / Enter correct number. Mfano / Example 0744000000";return;} let amount=m*20000; let box=document.getElementById("payBox"); box.style.display="block"; box.innerText="Lipa / Pay "+amount+" TZS kwenda / to Lipa Namba 10055686\nJina / Name: GARAJI JOSEPH MASAMBU\nBank: CRDB BANK PLC\n\nBaada ya kulipa, ingiza Reference ya SMS. / After paying, enter SMS Reference."; document.getElementById("ref").style.display="block"; document.getElementById("btnRef").style.display="block"; localStorage.setItem("awr_phone",phone); localStorage.setItem("awr_months",m);}
+function sendRef(){let r=document.getElementById("ref").value.trim(); if(r.length<4){document.getElementById("msg").innerText="Weka Reference ya SMS ya CRDB. / Enter CRDB SMS Reference.";return;} if(VALID_REFS.includes(r)){let phone=localStorage.getItem("awr_phone")||""; let months=localStorage.getItem("awr_months")||"1"; let days=months*30; localStorage.setItem("awr_secure_token",btoa(phone+"|"+r+"|"+months+"|"+SECRET_KEY+"|"+Date.now())); localStorage.setItem("awr_status","ACTIVE"); localStorage.setItem("awr_expire",Date.now()+days*24*60*60*1000); localStorage.setItem("awr_used_ref",r); let logs=JSON.parse(localStorage.getItem("awr_logs")||"[]"); logs.push({phone:phone,ref:r,time:new Date().toISOString()}); localStorage.setItem("awr_logs",JSON.stringify(logs)); document.getElementById("msg").innerText="✅ Reference "+r+" ni SAHIHI! Umefunguliwa kwa siku "+days+". / Reference is CORRECT! You are unlocked for "+days+" days."; setTimeout(()=>{checkAccess();},1000);} else {localStorage.setItem("awr_status","PENDING"); document.getElementById("msg").innerText="⛔ Reference "+r+" si sahihi. Lipa kwanza. / Reference "+r+" is not correct. Pay first.";}}
+function checkAccess(){if(isTokenValid()){document.getElementById("lockBox").style.display="none"; document.getElementById("secureContent").style.display="block";} else {document.getElementById("msg").innerText="Bado hujalipa / hujathibitishwa. Lipa kwanza. / Not yet paid / verified. Pay first.";}}
+function logoutSecure(){localStorage.removeItem("awr_secure_token"); localStorage.removeItem("awr_expire"); localStorage.setItem("awr_status","PENDING"); location.reload();}
+window.onload=()=>{if(isTokenValid()){document.getElementById("lockBox").style.display="none"; document.getElementById("secureContent").style.display="block";}};
 </script>
 </body>
 </html>
