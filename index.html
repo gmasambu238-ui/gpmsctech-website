@@ -1,444 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0047FF">
-<title>GPMSCTECH NEW BASE TECHNOLOGY</title>
-<meta name="description" content="GPMSCTECH NEW BASE TECHNOLOGY - Global Computer Software Technology System.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@speed_awr360° - Lipa Kwanza</title>
 <style>
-:root{--blue-dark:#002080;--blue:#0047FF;--blue-card:#0033CC;--gold:#FFD700}
-*{box-sizing:border-box}
-body{margin:0;background:var(--blue-dark);color:var(--gold);font-family:Arial,sans-serif}
-header{text-align:center;padding:32px 12px;background:var(--blue);border-bottom:4px solid var(--gold)}
-header h1{color:var(--gold);font-size:34px;margin:0}
-header h2{color:#FFF3A3;font-size:20px}
-header p{color:var(--gold);line-height:1.8}
-main{width:min(950px,94%);margin:25px auto}
-.card{background:var(--blue-card);padding:22px;margin-bottom:20px;border-radius:14px;border:2px solid var(--gold)}
-h2{color:var(--gold)} p,label{color:var(--gold)}
-input,select{width:100%;padding:14px;margin:8px 0;border-radius:8px;border:2px solid var(--gold);background:#001A80;color:var(--gold);font-size:15px}
-input::placeholder{color:#FFE97A;opacity:.7}
-select option{background:#002080;color:#FFD700}
-button{width:100%;padding:14px;margin:8px 0;border-radius:8px;border:2px solid var(--gold);background:var(--gold);color:#002080;font-weight:bold;font-size:16px;cursor:pointer}
-.secondary{background:transparent;color:var(--gold)}
-.status{padding:14px;background:#001A80;border:1px solid var(--gold);border-radius:8px;color:var(--gold);overflow-wrap:anywhere;line-height:1.6}
-.checkbox-row{display:flex;align-items:center;gap:10px;background:#001A80;border:2px solid var(--gold);border-radius:8px;padding:12px;margin:8px 0}
-.checkbox-row input{width:22px;height:22px;margin:0;accent-color:#FFD700}
-.pay-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.pay-tabs button{flex:1;min-width:110px;padding:10px;font-size:13px}
-.pay-method{background:white;padding:18px;border-radius:12px;border:3px solid #FFD700;margin:12px 0}
-.pay-method p{color:#000}
-.timer-box{background:#001A80;border:3px solid var(--gold);border-radius:14px;padding:20px;text-align:center}
-.timer-box h1{font-size:36px;color:var(--gold);margin:5px 0}
-.timer-progress{height:14px;background:#002080;border:1px solid var(--gold);border-radius:10px;overflow:hidden;margin:10px 0}
-.timer-progress div{height:100%;background:var(--gold);width:100%}
-.global-banner{background:#FFD700;color:#002080;padding:14px;border-radius:10px;text-align:center;font-weight:bold}
-.blocked-banner{background:#FF3B3B;color:white;padding:16px;border-radius:10px;text-align:center;font-weight:bold;display:none}
-.chat-box{background:#001A80;border:2px solid var(--gold);border-radius:10px;padding:14px;max-height:300px;overflow-y:auto;margin:10px 0}
-.chat-msg{margin:8px 0;padding:10px;border-radius:8px;line-height:1.6}
-.chat-user{background:#002080;color:#FFD700;text-align:right}
-.chat-bot{background:#FFD700;color:#002080}
-.receipt{background:white;color:#000;padding:22px;border-radius:12px;border:3px solid #FFD700;margin:15px 0;display:none}
-.receipt h2,.receipt h3,.receipt p{color:#000}
-.receipt .receipt-head{text-align:center;border-bottom:2px dashed #000;padding-bottom:12px}
-.receipt .receipt-row{display:flex;justify-content:space-between;border-bottom:1px dotted #999;padding:8px 0}
-.receipt .receipt-total{font-size:22px;font-weight:bold;text-align:center;background:#FFD700;padding:12px;border-radius:8px;margin:12px 0;color:#002080}
-.receipt .receipt-stamp{text-align:center;border:3px solid #006400;color:#006400;font-weight:bold;padding:10px;border-radius:10px;margin:12px 0}
-.contact-box{background:#001A80;border:2px solid var(--gold);border-radius:10px;padding:16px;text-align:center}
-@media print{ body *{visibility:hidden} #eReceipt, #eReceipt *{visibility:visible} #eReceipt{position:absolute;left:0;top:0;width:100%;display:block !important} }
-footer{text-align:center;padding:25px;background:var(--blue);color:var(--gold);border-top:4px solid var(--gold);line-height:1.8}
+body{font-family:sans-serif;background:#0f172a;color:white;margin:0;padding:20px;text-align:center}
+.lock-box{background:white;color:#111;max-width:420px;margin:20px auto;padding:20px;border-radius:16px}
+input,select,button{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #ccc;font-size:16px}
+button{background:#16a34a;color:white;border:none;font-weight:bold;cursor:pointer}
+.verse{font-style:italic;opacity:.8}
+.pay{background:#fff3cd;padding:12px;border-radius:8px;display:none;white-space:pre-line;text-align:left}
 </style>
 </head>
 <body>
-<!-- LANGUAGE BAR - English First, Kiswahili Second, All Countries Auto -->
-<div style="background:#001A80;padding:12px;text-align:center;border-bottom:2px solid #FFD700;position:sticky;top:0;z-index:1000">
-<label style="color:#FFD700;font-weight:bold">🌍 LANGUAGE / LUGHA: </label>
-<select id="langSelect" onchange="changeLanguage(this.value)" style="width:auto;display:inline-block;padding:10px 18px;background:#FFD700;color:#002080;font-weight:bold;border-radius:8px;cursor:pointer;max-width:95%">
-<option value="en">🇬🇧 English - Default</option>
-<option value="sw">🇹🇿 Kiswahili - Swahili</option>
-<option value="auto">🤖 Auto - Detect My Country Language Automatically</option>
-<option value="fr">🇫🇷 Français</option><option value="es">🇪🇸 Español</option><option value="pt">🇵🇹 Português</option><option value="de">🇩🇪 Deutsch</option><option value="it">🇮🇹 Italiano</option><option value="ar">🇸🇦 العربية Arabic</option><option value="zh">🇨🇳 中文 Chinese</option><option value="hi">🇮🇳 हिन्दी Hindi</option><option value="ja">🇯🇵 日本語 Japanese</option><option value="ko">🇰🇷 한국어 Korean</option><option value="ru">🇷🇺 Русский Russian</option><option value="nl">🇳🇱 Nederlands</option><option value="tr">🇹🇷 Türkçe</option><option value="am">🇪🇹 አማርኛ Amharic</option><option value="ha">🇳🇬 Hausa</option><option value="yo">🇳🇬 Yoruba</option><option value="ig">🇳🇬 Igbo</option><option value="zu">🇿🇦 isiZulu</option><option value="xh">🇿🇦 isiXhosa</option><option value="af">🇿🇦 Afrikaans</option><option value="so">🇸🇴 Soomaali Somali</option><option value="rw">🇷🇼 Kinyarwanda</option><option value="rn">🇧🇮 Kirundi</option><option value="lg">🇺🇬 Luganda</option><option value="sn">🇿🇼 Shona</option><option value="ny">🇲🇼 Chichewa</option><option value="st">🇱🇸 Sesotho</option><option value="tn">🇧🇼 Setswana</option>
+<div id="lockScreen">
+<h1>@speed_awr360°</h1>
+<p class="verse">Upendo wa kweli kwa Mungu unaonekana kwa kuwajali wahitaji.</p>
+<div class="lock-box">
+<h2>🔒 Mfumo Umefungwa</h2>
+<p>Lipa <b>20,000 TZS / mwezi</b> ili uingie.</p>
+<p><b>Lipa Namba:</b> 10055686</p>
+<p><b>Jina:</b> GARAJI JOSEPH MASAMBU</p>
+<p><b>Bank:</b> CRDB BANK PLC</p>
+<input id="phone" type="tel" placeholder="Namba yako - mfano 0744000000">
+<select id="months">
+<option value="1">Mwezi 1 - 20,000 TZS</option>
+<option value="2">Miezi 2 - 40,000 TZS</option>
+<option value="3">Miezi 3 - 60,000 TZS</option>
+<option value="6">Miezi 6 - 120,000 TZS</option>
+<option value="12">Mwaka 1 - 240,000 TZS</option>
 </select>
-<p id="langStatus" style="color:#FFD700;font-size:12px;margin:6px 0 0">English is Default. Choose your language - It will change automatically.</p>
+<button onclick="showPay()">1. Pata Maelekezo ya Kulipa</button>
+<p id="payBox" class="pay"></p>
+<input id="ref" type="text" placeholder="Weka Reference ya SMS ya CRDB" style="display:none">
+<button onclick="sendRef()" id="btnRef" style="display:none">2. Tuma Reference</button>
+<p id="msg"></p>
+<button onclick="checkAccess()" style="background:#2563eb">Angalia Kama Nimeruhusiwa</button>
 </div>
-<div id="google_translate_element" style="text-align:center;background:#002080;padding:8px"></div>
-<script>function googleTranslateElementInit(){ new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,sw,fr,es,pt,de,it,ar,zh,hi,ja,ko,ru,nl,tr,am,ha,yo,ig,zu,xh,af,so,rw,rn,lg,sn,ny,st,tn',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element'); }</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<header>
-<h1 id="mainTitle">GPMSCTECH NEW BASE TECHNOLOGY</h1>
-<h2 id="mainSubtitle">GLOBAL COMPUTER SOFTWARE TECHNOLOGY SYSTEM</h2>
-<p id="globalText">All Computer Software Technology In The World Is Under GPMSCTECH NEW BASE TECHNOLOGY</p>
-<p id="worldUse">The World Uses Computer Software Technology System - And That System Is GPMSCTECH NEW BASE TECHNOLOGY</p>
-<p>Global Positive Mind Set Center Technology - Based in Mwanza, Tanzania, Serving the World.</p>
-<p>PRAISE AND GLORY TO GOD THE FATHER ALMIGHTY, JESUS CHRIST GOD ALMIGHTY, AND THE HOLY SPIRIT GOD ALMIGHTY, AMEN.</p>
-<p style="font-size:13px;opacity:.9">Teknolojia Zote Za Computer Software Duniani Ziko Chini Ya GPMSCTECH NEW BASE TECHNOLOGY - Dunia Inatumia Hii System.</p>
-</header>
-<main>
-<section class="card">
-<h2>🌍 GPMSCTECH NEW BASE TECHNOLOGY</h2>
-<div class="global-banner">GPMSCTECH NEW BASE TECHNOLOGY - GLOBAL COMPUTER SOFTWARE TECHNOLOGY SYSTEM</div>
-<p><strong>System:</strong> GPMSCTECH NEW BASE TECHNOLOGY</p>
-<p><strong>Scope:</strong> Worldwide - Globally</p>
-<p><strong>All Computer Software Technology:</strong> Under GPMSCTECH NEW BASE TECHNOLOGY</p>
-<p><strong>System Status:</strong> <span id="globalSystemStatus">Processing...</span></p>
-<p><strong>System Does Not Give Out Money:</strong> It stores money only. Withdrawal is Founder & CEO only.</p>
-<p>PRAISE AND GLORY TO GOD THE FATHER ALMIGHTY, JESUS CHRIST GOD ALMIGHTY, AND THE HOLY SPIRIT GOD ALMIGHTY, AMEN.</p>
-</section>
-<section class="card">
-<h2>⏰ System Time - Timer Automatically</h2>
-<div class="timer-box"><p>Special Time Ends:</p><h1 id="timer">Loading...</h1><p>10 November 2026 - 23:59:59 - EAT</p><div class="timer-progress"><div id="timerBar"></div></div><p id="timerPercent">100% Remaining</p><p id="timerMessage">Pay now so your service does not stop.</p></div>
-<div id="expiredBanner" class="blocked-banner">⛔ TIME EXPIRED - Those Who Did Not Pay Do Not Get Service Globally</div>
-</section>
-<section class="card">
-<h2 id="askTitle">💬 Ask GPMSCTECH - It Answers How To Get Service Only</h2>
-<p>All communications will be answered by GPMSCTECH as programmed. Other matters it does not answer.</p>
-<div id="chatBox" class="chat-box"><div class="chat-msg chat-bot"><strong>GPMSCTECH:</strong> Welcome to GPMSCTECH NEW BASE TECHNOLOGY. Ask me how to get service - I will guide you. Example: "How do I pay?" / "How do I get E-Receipt?" / "How do I get FREE for disabled?"</div></div>
-<input id="chatInput" placeholder="Write here: How do I pay? / Andika hapa: Nataka kulipa vipi?">
-<button id="chatBtn">Send to GPMSCTECH / Tuma kwa GPMSCTECH</button>
-<p><small>If you ask other matters: "I guide you on how to get service only and nothing else." / Kama ukiuliza mambo mengine: "Nakuelekeza namna ya kupata huduma tu na siyo vinginevyo."</small></p>
-</section>
-<section class="card">
-<h2>🔍 Search Anything - GPMSCTECH NEW BASE TECHNOLOGY</h2>
-<input id="globalSearch" placeholder="Search: Google, Facebook, Government, Bank, Satellite, Software...">
-<button id="searchBtn">Search Now / Tafuta Sasa</button>
-<div id="searchResults" class="status">Write anything to search...</div>
-</section>
-<section class="card">
-<h2>Registration - Choose Type / Usajili - Chagua Aina</h2>
-<select id="entityType"><option value="">-- Choose Type / Chagua Aina --</option><option value="SERIKALI">Serikali / Government</option><option value="SHIRIKA">Shirika / Organization</option><option value="TAASISI">Taasisi / Institution</option><option value="NGO">NGO</option><option value="KIKUNDI">Kikundi / Group</option><option value="MFANYABIASHARA">Mfanyabiashara / Business / Person</option><option value="TEKNOLOJIA">Teknolojia / Technology - Google, Facebook, Microsoft</option><option value="BENKI">Benki / Bank</option><option value="SIMU">Kampuni ya Simu / Phone Company</option></select>
-<input id="regName" placeholder="Full Name / Jina kamili">
-<input id="regOrgName" placeholder="Organization Name / Jina la Taasisi">
-<input id="regRegNo" placeholder="Registration Number / Namba ya Usajili">
-<input id="regLeader" placeholder="Representative Name / Jina la Mwakilishi">
-<input id="regPhone" placeholder="Phone Number / Namba ya simu">
-<input id="regEmail" type="email" placeholder="Email / Barua pepe">
-<input id="regPassword" type="password" placeholder="Password - 8+ characters / Nenosiri - herufi 8+">
-<input id="regCountry" placeholder="Country / Nchi - Example: Tanzania">
-<input id="regRegion" placeholder="Region / Mkoa - Example: Mwanza">
-<label>Do you serve disabled people? / Je, unashughulika na watu wenye ulemavu?</label>
-<div class="checkbox-row"><input type="checkbox" id="regServesDisabled"><label for="regServesDisabled" style="margin:0">YES - We Serve Disabled People - We Request FREE SERVICE / NDIYO - Tunahudumia Watu Wenye Ulemavu - Tunaomba HUDUMA BURE</label></div>
-<input id="regDisabledProof" placeholder="Proof details / Maelezo ya ushahidi">
-<button id="registerBtn">Register / Jisajili</button>
-<hr><h2>Login / Ingia kwenye Akaunti</h2>
-<input id="loginEmail" type="email" placeholder="Email / Barua pepe">
-<input id="loginPassword" type="password" placeholder="Password / Nenosiri">
-<button id="loginBtn">Login / Ingia</button>
-<button class="secondary" id="logoutBtn">Logout / Toka</button>
-<div id="authStatus" class="status">Not logged in. / Hujaingia.</div>
-</section>
-<section class="card">
-<h2>1. GOVERNMENT / ORGANIZATION / INSTITUTION / NGO / GROUP / BUSINESS</h2>
-<p><strong>Each Person 1 = TZS 20,000 per Month 1</strong> - Formula: People x 20,000 x Months - Calculated Automatically</p>
-<p><strong>If you serve disabled people - SERVICE IS FREE.</strong> System will process automatically.</p>
-<select id="payEntityType"><option value="SERIKALI">Serikali / Government</option><option value="SHIRIKA">Shirika / Organization</option><option value="TAASISI">Taasisi / Institution</option><option value="NGO">NGO</option><option value="KIKUNDI">Kikundi / Group</option><option value="MFANYABIASHARA">Mfanyabiashara / Business</option></select>
-<input id="payOrgName" placeholder="Organization Name / Jina la Taasisi">
-<input id="payWorkers" type="number" placeholder="Number of Workers / People - Example: 25 / Idadi ya Watu">
-<select id="payMonths"><option value="1">Month 1 / Mwezi 1</option><option value="2">Months 2 / Miezi 2</option><option value="3">Months 3</option><option value="4">Months 4</option><option value="5">Months 5</option><option value="6">Months 6</option><option value="7">Months 7</option><option value="8">Months 8</option><option value="9">Months 9</option><option value="10">Months 10</option><option value="11">Months 11</option><option value="12">Months 12</option></select>
-<div class="checkbox-row"><input type="checkbox" id="payServesDisabled"><label for="payServesDisabled" style="margin:0">YES - We Serve Disabled People - We Request FREE - Will Be Processed Automatically / NDIYO - Tunahudumia Walemavu - Tunaomba BURE</label></div>
-<input id="payDisabledProof" placeholder="Disability proof - Certificate / Letter / Number of disabled / Ushahidi wa ulemavu">
-<h2 id="payTotal">TZS 0</h2>
-<p id="payBreakdown" class="status">Enter number of people to see calculation.</p>
-<div id="payBankInfo">
-<h2 style="text-align:center">💳 Choose Payment Method - 5 Methods / Chagua Njia Ya Kulipa - Njia 5</h2>
-<div class="pay-tabs">
-<button type="button" onclick="showPay('payQR')">1. SCAN QR</button>
-<button type="button" onclick="showPay('payLipaNamba')">2. LIPA NAMBA</button>
-<button type="button" onclick="showPay('paySimBanking')">3. SIMBANKING</button>
-<button type="button" onclick="showPay('payMitandao')">4. MOBILE NETWORKS</button>
-<button type="button" onclick="showPay('payBenki')">5. BANK / CARD</button>
 </div>
-<div id="payQR" class="pay-method" style="text-align:center">
-<p style="color:#006400;font-weight:bold;font-size:18px">SCAN TO PAY - CRDB LIPA HAPA</p>
-<img src="lipa-hapa.jpg" alt="CRDB Lipa Hapa QR - 10055686 GARAJI JOSEPH MASAMBU" style="width:100%;max-width:320px;border-radius:10px;margin:12px 0">
-<p>LIPA NAMBA: <strong>10055686</strong></p><p><strong>GARAJI JOSEPH MASAMBU</strong></p>
-</div>
-<div id="payLipaNamba" class="pay-method" style="display:none;text-align:center">
-<p style="color:#006400;font-weight:bold;font-size:18px">LIPA NAMBA - TIPS</p>
-<p style="font-size:32px;font-weight:bold;letter-spacing:5px;border:2px solid #000;padding:10px">10055686</p>
-<p style="font-weight:bold;font-size:18px">GARAJI JOSEPH MASAMBU</p>
-</div>
-<div id="paySimBanking" class="pay-method" style="display:none;background:#001A80;text-align:center">
-<p style="color:#FFD700 !important;font-weight:bold;font-size:18px">SIMBANKING - CRDB</p>
-<p style="color:#FFD700 !important;font-size:28px;font-weight:bold;background:#002080;padding:12px;border-radius:8px">Dial *150*03# / Piga *150*03#</p>
-<p style="color:#FFD700 !important">Lipa Namba: <strong>10055686</strong> - GARAJI JOSEPH MASAMBU</p>
-<p style="color:#FFD700 !important">Amount / Kiasi: <strong id="simAmount">TZS 0</strong></p>
-</div>
-<div id="payMitandao" class="pay-method" style="display:none">
-<p style="color:#006400;font-weight:bold;text-align:center">M-PESA / TIGO PESA / AIRTEL MONEY / HALOPESA</p>
-<p>Choose Lipa Hapa / TIPS - Enter 10055686 - GARAJI JOSEPH MASAMBU</p>
-</div>
-<div id="payBenki" class="pay-method" style="display:none">
-<p style="color:#006400;font-weight:bold;text-align:center">BANK / CARD - VISA / MASTERCARD / UNIONPAY / AMEX</p>
-<p>✅ Card: VISA, Mastercard, UnionPay, AMEX</p>
-<p>✅ Bank to Bank Transfer - Lipa Namba 10055686</p>
-<p>✅ Go to CRDB Branch - Lipa Namba 10055686 - GARAJI JOSEPH MASAMBU</p>
-</div>
-<input id="payRef" placeholder="Transaction Number - After paying / Namba ya muamala">
-<input id="payPhone" placeholder="Phone used to pay / Namba ya simu iliyotumika kulipa">
-<select id="payMethodUsed"><option value="">-- Choose Method Used / Chagua Njia Uliyotumia --</option><option value="SCAN_QR">1. Scan QR</option><option value="LIPA_NAMBA">2. Lipa Namba - TIPS</option><option value="SIMBANKING">3. SimBanking - *150*03#</option><option value="MITANDAO_SIMU">4. Mobile Networks</option><option value="BENKI_KADI">5. Bank / Card</option></select>
-</div>
-<button id="payBtn">Complete Payment - Will Be Processed Automatically / Kamilisha Malipo</button>
-<div id="payStatus" class="status">Status: Not submitted.</div>
-<div id="eReceipt" class="receipt">
-<div class="receipt-head"><h2>GPMSCTECH NEW BASE TECHNOLOGY</h2><h3>E-RECEIPT - ELECTRONIC RECEIPT / RISITI YA KIELEKTRONIKI</h3><p>PRAISE AND GLORY TO GOD THE FATHER ALMIGHTY, JESUS CHRIST GOD ALMIGHTY, AND THE HOLY SPIRIT GOD ALMIGHTY, AMEN.</p></div>
-<div class="receipt-row"><span>Receipt Number / Namba ya Risiti:</span><strong id="rReceiptNo">-</strong></div>
-<div class="receipt-row"><span>Date / Time / Tarehe:</span><strong id="rDate">-</strong></div>
-<div class="receipt-row"><span>Type / Aina:</span><strong id="rEntityType">-</strong></div>
-<div class="receipt-row"><span>Organization / Jina la Taasisi:</span><strong id="rOrgName">-</strong></div>
-<div class="receipt-row"><span>People / Idadi ya Watu:</span><strong id="rWorkers">-</strong></div>
-<div class="receipt-row"><span>Months / Miezi:</span><strong id="rMonths">-</strong></div>
-<div class="receipt-row"><span>Per Person / Kila Mtu:</span><strong>TZS 20,000 / Month</strong></div>
-<div class="receipt-row"><span>Payment Method / Njia ya Kulipa:</span><strong id="rPayMethod">-</strong></div>
-<div class="receipt-row"><span>Transaction Number / Namba ya Muamala:</span><strong id="rRef">-</strong></div>
-<div class="receipt-row"><span>Phone Used / Simu:</span><strong id="rPhone">-</strong></div>
-<div class="receipt-row"><span>Received By / Imepokelewa na:</span><strong>CRDB - Lipa Namba 10055686</strong></div>
-<div class="receipt-row"><span>Account Name / Jina la Akaunti:</span><strong>GARAJI JOSEPH MASAMBU</strong></div>
-<div class="receipt-total" id="rTotal">TZS 0</div>
-<div class="receipt-stamp">✅ MONEY HAS ENTERED - SAVED / PESA IMEINGIA - IMETUNZWA<br>GPMSCTECH NEW BASE TECHNOLOGY<br>Service Activated Automatically / Huduma Imewashwa Automatically</div>
-<p style="text-align:center;font-size:13px">Status: <strong id="rStatus">AUTO_APPROVED</strong><br>System processed automatically. Service activated.<br>System does not give out money - It stores money only. Withdrawal is Founder & CEO: Garaji Joseph Masambu also known as George Joseph Masambu only.</p>
-<button type="button" onclick="window.print()" style="background:#002080;color:#FFD700">🖨️ Print / Download E-Receipt</button>
-</div>
-<button id="viewReceiptBtn" class="secondary" style="display:none">View My E-Receipt Again / Tazama E-Receipt Yangu Tena</button>
-</section>
-<section class="card">
-<h2>2. TECHNOLOGY / BANKS / PHONE - 20% Contribution / Mchango 20%</h2>
-<p>Formula: <strong>(Revenue - Expenses) x 20%</strong> - Calculated Automatically</p>
-<select id="techType"><option value="GOOGLE">Google</option><option value="FACEBOOK">Facebook</option><option value="MICROSOFT">Microsoft</option><option value="TEKNOLOJIA">Other Technology</option><option value="BENKI">Bank / Benki</option><option value="SIMU">Phone Company / Kampuni ya Simu</option></select>
-<input id="techName" placeholder="Company Name / Jina la Kampuni">
-<input id="techMonth" placeholder="Month - Example: 2026-11 / Mwezi">
-<input id="techRevenue" type="number" placeholder="Monthly Revenue - TZS / Mapato ya Mwezi">
-<input id="techExpenses" type="number" placeholder="Monthly Expenses - TZS / Matumizi ya Mwezi">
-<button id="calc20Btn">Calculate 20% / Hesabu 20%</button>
-<p id="calcResult" class="status">Profit and 20% will appear here.</p>
-<button id="techBtn">Send 20% Report - Will Be Processed Automatically / Tuma Ripoti ya 20%</button>
-<p id="techStatus" class="status"></p>
-<div id="eReceipt20" class="receipt">
-<div class="receipt-head"><h2>GPMSCTECH NEW BASE TECHNOLOGY</h2><h3>E-RECEIPT - 20% CONTRIBUTION</h3><p>PRAISE AND GLORY TO GOD THE FATHER ALMIGHTY, JESUS CHRIST GOD ALMIGHTY, AND THE HOLY SPIRIT GOD ALMIGHTY, AMEN.</p></div>
-<div class="receipt-row"><span>Receipt No:</span><strong id="r20ReceiptNo">-</strong></div>
-<div class="receipt-row"><span>Company:</span><strong id="r20Company">-</strong></div>
-<div class="receipt-row"><span>Month:</span><strong id="r20Month">-</strong></div>
-<div class="receipt-row"><span>Revenue:</span><strong id="r20Revenue">-</strong></div>
-<div class="receipt-row"><span>Expenses:</span><strong id="r20Expenses">-</strong></div>
-<div class="receipt-row"><span>Profit:</span><strong id="r20Profit">-</strong></div>
-<div class="receipt-total" id="r20Total">TZS 0</div>
-<div class="receipt-stamp">✅ MONEY HAS ENTERED - SAVED<br>GPMSCTECH NEW BASE TECHNOLOGY</div>
-<button type="button" onclick="window.print()" style="background:#002080;color:#FFD700">🖨️ Print / Download E-Receipt</button>
-</div>
-</section>
-<section class="card">
-<h2>3. My Bank Statement - GPMSCTECH NEW BASE TECHNOLOGY</h2>
-<button id="statementBtn">View My Bank Statement + My E-Receipts / Angalia Bank Statement Yangu</button>
-<div id="statementStatus" class="status">Click to view your Bank Statement.</div>
-<button id="myReceiptsBtn">View All My E-Receipts / Angalia E-Receipt Zangu Zote</button>
-<div id="myReceiptsStatus" class="status">Click to view your E-Receipts.</div>
-</section>
-<section class="card">
-<h2>4. My Service Status - Global Check / Hali ya Huduma Yangu</h2>
-<button id="accessBtn">Check If My Service Works Globally / Angalia Kama Huduma Inafanya Kazi Globally</button>
-<div id="accessStatus" class="status">Not checked.</div>
-<div id="globalAccessBanner" class="status" style="display:none"></div>
-</section>
-<section class="card">
-<h2>5. TRUTH PROCESSING - Audit Log / UCHAKATAJI WA UKWELI</h2>
-<button id="auditBtn">View My Truth Records / Angalia Kumbukumbu Zangu za Ukweli</button>
-<div id="auditStatus" class="status">Click to view audit.</div>
-</section>
-<section class="card">
-<h2>QR Security Request / Omba QR Security</h2>
-<button id="qrBtn">Request QR Security / Omba QR Security</button>
-<div id="qrStatus" class="status">No request.</div>
-</section>
-<section class="card">
-<h2>Founder & CEO - Bank Statement Only / Bank Statement Tu</h2>
-<p>You enter to view Bank Statement only. System processes everything automatically.</p>
-<p>Withdrawal is You only: Garaji Joseph Masambu also known as George Joseph Masambu.</p>
-<button id="adminStatementBtn">View System Bank Statement / Angalia Bank Statement ya Mfumo</button>
-<div id="adminStatementResult" class="status">Click to view Bank Statement.</div>
-<hr>
-<select id="adminFilter"><option value="ALL">All Types</option><option value="SERIKALI">Serikali</option><option value="SHIRIKA">Shirika</option><option value="TAASISI">Taasisi</option><option value="NGO">NGO</option><option value="KIKUNDI">Kikundi</option><option value="MFANYABIASHARA">Mfanyabiashara</option></select>
-<button id="adminListBtn">View Processed - For Information Only</button>
-<div id="adminList" class="status">List will appear here.</div>
-<button id="globalStatusBtn">View System Status / Angalia Hali ya Mfumo</button>
-<div id="globalStatusResult" class="status">Click to view system status.</div>
-</section>
-<section class="card">
-<h2>Contacts - GPMSCTECH NEW BASE TECHNOLOGY / Mawasiliano</h2>
-<div class="contact-box"><p><strong>Email 1:</strong> georgemasambu64@gmail.com</p><p><strong>Email 2:</strong> gmasambu238@gmail.com</p><p><strong>WhatsApp 1:</strong> +255717314652</p><p><strong>WhatsApp 2:</strong> +255744769060</p></div>
-<p>PRAISE AND GLORY TO GOD THE FATHER ALMIGHTY, JESUS CHRIST GOD ALMIGHTY, AND THE HOLY SPIRIT GOD ALMIGHTY, AMEN.</p>
-</section>
-</main>
-<footer>
-GPMSCTECH NEW BASE TECHNOLOGY<br>
-GLOBAL COMPUTER SOFTWARE TECHNOLOGY SYSTEM<br>
-Founder & CEO: Garaji Joseph Masambu<br>
-Also Known As George Joseph Masambu<br>
-All Computer Software Technology In The World Is Under GPMSCTECH NEW BASE TECHNOLOGY<br><br>
-<strong>Contacts / Mawasiliano:</strong><br>
-Email: georgemasambu64@gmail.com<br>
-Email: gmasambu238@gmail.com<br>
-WhatsApp: +255717314652<br>
-WhatsApp: +255744769060<br><br>
-PRAISE AND GLORY TO GOD THE FATHER ALMIGHTY, JESUS CHRIST GOD ALMIGHTY, AND THE HOLY SPIRIT GOD ALMIGHTY, AMEN.
-</footer>
-<script>function showPay(id){ document.querySelectorAll('.pay-method').forEach(el=> el.style.display='none'); document.getElementById(id).style.display='block'; }</script>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-functions.js";
-const firebaseConfig = { apiKey: "AIzaSyBYmWzzWfvHkuRgHpQhvDzj6m0o8oRzHrw", authDomain: "gpmsctech-18abb.firebaseapp.com", projectId: "gpmsctech-18abb", storageBucket: "gpmsctech-18abb.firebasestorage.app", messagingSenderId: "554624850081", appId: "1:554624850081:web:ac5884fdd893a540ed78e0" };
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); const db = getFirestore(app); const functions = getFunctions(app, "africa-south1");
-const submitGeneralPayment = httpsCallable(functions,"submitGeneralPayment");
-const submitTechContribution = httpsCallable(functions,"submitTechContribution");
-const submitQrRequest = httpsCallable(functions,"submitQrRequest");
-const checkMyAccess = httpsCallable(functions,"checkMyAccess");
-const globalSearch = httpsCallable(functions,"globalSearch");
-const adminListByEntityType = httpsCallable(functions,"adminListByEntityType");
-const getMyAudit = httpsCallable(functions,"getMyAudit");
-const getGlobalSystemStatus = httpsCallable(functions,"getGlobalSystemStatus");
-const getMyBankStatement = httpsCallable(functions,"getMyBankStatement");
-const adminGetBankStatement = httpsCallable(functions,"adminGetBankStatement");
-const askSpeedAwr = httpsCallable(functions,"askSpeedAwr");
-const getMyReceipts = httpsCallable(functions,"getMyReceipts");
-const $ = id => document.getElementById(id);
-let currentUser = null; let lastReceipt = null;
-const money = n => "TZS " + Number(n).toLocaleString("en-US");
-const DEADLINE = new Date("2026-11-10T23:59:59+03:00").getTime();
-const START_TIME = new Date("2026-01-01T00:00:00+03:00").getTime();
-const TOTAL_DURATION = DEADLINE - START_TIME;
-function updateTimer(){
-  const now = Date.now(); const remaining = DEADLINE - now;
-  const timerEl = $("timer"); const barEl = $("timerBar"); const percentEl = $("timerPercent"); const msgEl = $("timerMessage"); const expiredEl = $("expiredBanner"); const globalStatusEl = $("globalSystemStatus");
-  if(remaining <= 0){ timerEl.textContent = "00 : 00 : 00 : 00"; if(barEl) barEl.style.width="0%"; if(percentEl) percentEl.textContent="0% Remaining - TIME EXPIRED"; if(msgEl) msgEl.textContent="⛔ Time expired. Those who did not pay do not get service globally."; if(expiredEl) expiredEl.style.display="block"; if(globalStatusEl) globalStatusEl.textContent="TIME EXPIRED - Global Enforcement WORKING"; return; }
-  const days=Math.floor(remaining/86400000); const hours=Math.floor(remaining%86400000/3600000); const minutes=Math.floor(remaining%3600000/60000); const seconds=Math.floor(remaining%60000/1000); const pad=n=>String(n).padStart(2,"0");
-  timerEl.textContent=`${pad(days)} days : ${pad(hours)} : ${pad(minutes)} : ${pad(seconds)}`;
-  const percentLeft=Math.max(0,Math.min(100,(remaining/TOTAL_DURATION)*100));
-  if(barEl) barEl.style.width=percentLeft+"%";
-  if(percentEl) percentEl.textContent=percentLeft.toFixed(2)+"% Remaining";
-  if(msgEl) msgEl.textContent=remaining<86400000?"⚠️ Less than 1 day left! Pay NOW.":remaining<7*86400000?"⚠️ Less than 1 week left!":"Pay now so your service does not stop.";
-  if(globalStatusEl) globalStatusEl.textContent="ACTIVE - GPMSCTECH NEW BASE TECHNOLOGY Working - "+percentLeft.toFixed(1)+"% Time Remaining";
-}
-updateTimer(); setInterval(updateTimer,1000);
-onAuthStateChanged(auth, user=>{ currentUser=user; $("authStatus").textContent=user?"Logged in: "+user.email:"Not logged in."; });
-$("registerBtn").onclick = async()=>{ try{ const name=$("regName").value.trim(); const email=$("regEmail").value.trim(); const password=$("regPassword").value; const entityType=$("entityType").value; if(!entityType) throw Error("Choose Type first / Chagua Aina kwanza."); if(!name||!email||password.length<8) throw Error("Fill name, email and password 8+."); const c=await createUserWithEmailAndPassword(auth,email,password); await setDoc(doc(db,"users",c.user.uid),{name,email,entityType,orgName:$("regOrgName").value.trim(),regNo:$("regRegNo").value.trim(),leader:$("regLeader").value.trim(),phone:$("regPhone").value.trim(),country:$("regCountry").value.trim(),region:$("regRegion").value.trim(),servesDisabled:$("regServesDisabled").checked,disabledProof:$("regDisabledProof").value.trim(),createdAt:serverTimestamp()}); $("authStatus").textContent="Registered as "+entityType; }catch(e){ $("authStatus").textContent=e.message; } };
-$("loginBtn").onclick = async()=>{ try{ await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value); }catch(e){ $("authStatus").textContent=e.message; } };
-$("logoutBtn").onclick = async()=>{ try{ await signOut(auth); }catch(e){ $("authStatus").textContent=e.message; } };
-function updatePayTotal(){
-  const w=Number($("payWorkers").value||0); const m=Number($("payMonths").value||1); const servesDisabled=$("payServesDisabled").checked; const type=$("payEntityType").value;
-  if(servesDisabled){ $("payTotal").textContent="FREE - TZS 0 / BURE - TZS 0"; $("payBreakdown").textContent=`${type} - You serve disabled people - SERVICE IS FREE - Will be processed automatically.`; $("payBankInfo").style.display="none"; $("payBtn").textContent="Complete FREE Request - Will Be Processed Automatically"; }
-  else { const perMonth=w*20000; const total=perMonth*m; $("payTotal").textContent=money(total); $("payBankInfo").style.display="block"; $("payBtn").textContent="Complete Payment - Will Be Processed Automatically"; const simEl=$("simAmount"); if(simEl) simEl.textContent=money(total); if(w>0) $("payBreakdown").textContent=`${type} - People ${w} x 20,000 = ${money(perMonth)} / month. Months ${m} = ${money(total)}`; else $("payBreakdown").textContent="Enter number of people to see calculation."; }
-}
-$("payWorkers").addEventListener("input", updatePayTotal); $("payMonths").addEventListener("change", updatePayTotal); $("payEntityType").addEventListener("change", updatePayTotal); $("payServesDisabled").addEventListener("change", updatePayTotal);
-$("payBtn").onclick = async()=>{
-  try{
-    if(!currentUser) throw Error("Login first / Ingia kwanza.");
-    $("payStatus").textContent = "Processing automatically... / Inachakata automatically...";
-    const res = await submitGeneralPayment({ entityType: $("payEntityType").value, orgName: $("payOrgName").value.trim(), workers: Number($("payWorkers").value), months: Number($("payMonths").value), reference: $("payRef").value.trim(), phone: $("payPhone").value.trim(), payMethodUsed: $("payMethodUsed")?$("payMethodUsed").value:"", servesDisabled: $("payServesDisabled").checked, disabledProof: $("payDisabledProof").value.trim(), lang: document.getElementById("langSelect").value });
-    const r = res.data.receipt; lastReceipt = r;
-    $("payStatus").textContent = res.data.message + " | E-Receipt: " + r.receiptNo;
-    $("rReceiptNo").textContent = r.receiptNo;
-    $("rDate").textContent = new Date(r.createdAt).toLocaleString("en-GB",{timeZone:"Africa/Dar_es_Salaam"});
-    $("rEntityType").textContent = r.entityType || r.companyType || "-";
-    $("rOrgName").textContent = r.orgName || r.companyName || "-";
-    $("rWorkers").textContent = r.workers || "-";
-    $("rMonths").textContent = r.months || r.month || "-";
-    $("rPayMethod").textContent = r.payMethodUsed || "FREE - DISABLED / BURE - WALEMAVU";
-    $("rRef").textContent = r.reference || "FREE - DISABLED";
-    $("rPhone").textContent = r.phone || "-";
-    $("rTotal").textContent = money(r.amount);
-    $("rStatus").textContent = res.data.autoStatus + " - MONEY HAS ENTERED - SAVED - SERVICE ACTIVATED";
-    $("eReceipt").style.display = "block"; $("viewReceiptBtn").style.display = "block"; $("eReceipt").scrollIntoView({behavior:"smooth"});
-  }catch(e){ $("payStatus").textContent = e.message; }
-};
-$("viewReceiptBtn").onclick = ()=>{ if(lastReceipt){ $("eReceipt").style.display="block"; $("eReceipt").scrollIntoView({behavior:"smooth"}); } else { $("payStatus").textContent="No E-Receipt yet. Pay first."; } };
-$("calc20Btn").onclick = ()=>{ const rev=Number($("techRevenue").value); const exp=Number($("techExpenses").value); if(isNaN(rev)||isNaN(exp)||exp>rev){ $("calcResult").textContent="Invalid figures / Takwimu si sahihi."; return; } const p=rev-exp; $("calcResult").textContent=`Profit: ${money(p)} | 20% Contribution: ${money(p*0.20)}`; };
-$("techBtn").onclick = async()=>{ try{ if(!currentUser) throw Error("Login first."); const res=await submitTechContribution({companyType:$("techType").value,companyName:$("techName").value.trim(),month:$("techMonth").value.trim(),revenue:Number($("techRevenue").value),expenses:Number($("techExpenses").value)}); const r=res.data.receipt; $("techStatus").textContent=res.data.message+" | E-Receipt: "+r.receiptNo; $("r20ReceiptNo").textContent=r.receiptNo; $("r20Company").textContent=r.companyName; $("r20Month").textContent=r.month; $("r20Revenue").textContent=money(r.revenue); $("r20Expenses").textContent=money(r.expenses); $("r20Profit").textContent=money(r.netProfit); $("r20Total").textContent=money(r.amount); $("eReceipt20").style.display="block"; $("eReceipt20").scrollIntoView({behavior:"smooth"}); }catch(e){ $("techStatus").textContent=e.message; } };
-$("qrBtn").onclick = async()=>{ try{ if(!currentUser) throw Error("Login first."); const res=await submitQrRequest({}); $("qrStatus").textContent=res.data.message; }catch(e){ $("qrStatus").textContent=e.message; } };
-$("accessBtn").onclick = async()=>{ try{ if(!currentUser) throw Error("Login first."); const res=await checkMyAccess({}); const banner=$("globalAccessBanner"); banner.style.display="block"; if(res.data.active){ $("accessStatus").textContent="✅ SERVICE AVAILABLE GLOBALLY. Ends: "+res.data.expiresAt; banner.textContent="✅ APPROVED - Your service works worldwide via GPMSCTECH NEW BASE TECHNOLOGY."; } else { $("accessStatus").textContent="⛔ SERVICE OFF / NOT APPROVED. Status: "+res.data.status+" | Reason: "+res.data.reason; banner.textContent="⛔ "+res.data.reason; } }catch(e){ $("accessStatus").textContent=e.message; } };
-$("auditBtn").onclick = async()=>{ try{ if(!currentUser) throw Error("Login first."); const res=await getMyAudit({}); $("auditStatus").textContent=JSON.stringify(res.data.audit,null,2); }catch(e){ $("auditStatus").textContent=e.message; } };
-$("statementBtn").onclick = async()=>{ try{ if(!currentUser) throw Error("Login first."); const res=await getMyBankStatement({}); $("statementStatus").textContent=`GPMSCTECH NEW BASE TECHNOLOGY - Your Bank Statement\nTotal Stored For You: ${money(res.data.totalStored)} | Transactions: ${res.data.count}\n\n`+JSON.stringify(res.data.statements,null,2); }catch(e){ $("statementStatus").textContent=e.message; } };
-$("myReceiptsBtn").onclick = async()=>{ try{ if(!currentUser) throw Error("Login first."); const res=await getMyReceipts({}); $("myReceiptsStatus").textContent=`Your E-Receipts: ${res.data.count} | Total: ${money(res.data.totalAmount)}\n\n`+JSON.stringify(res.data.receipts,null,2); }catch(e){ $("myReceiptsStatus").textContent=e.message; } };
-$("adminStatementBtn").onclick = async()=>{ try{ const res=await adminGetBankStatement({}); $("adminStatementResult").textContent=`GPMSCTECH NEW BASE TECHNOLOGY - System Bank Statement\nTotal Stored: ${money(res.data.totalStored)} | Transactions: ${res.data.count} | Withdrawn by Admin: ${money(res.data.totalWithdrawn)} | Balance: ${money(res.data.balance)}\n\n`+JSON.stringify(res.data.statements.slice(0,20),null,2); }catch(e){ $("adminStatementResult").textContent=e.message; } };
-$("chatBtn").onclick = async()=>{ const input=$("chatInput"); const q=input.value.trim(); if(!q) return; const box=$("chatBox"); const userDiv=document.createElement("div"); userDiv.className="chat-msg chat-user"; userDiv.textContent="You: "+q; box.appendChild(userDiv); input.value=""; box.scrollTop=box.scrollHeight; try{ const res=await askSpeedAwr({question:q, lang: document.getElementById("langSelect").value}); const botDiv=document.createElement("div"); botDiv.className="chat-msg chat-bot"; botDiv.innerHTML="<strong>GPMSCTECH:</strong> "+res.data.answer; box.appendChild(botDiv); box.scrollTop=box.scrollHeight; }catch(e){ const botDiv=document.createElement("div"); botDiv.className="chat-msg chat-bot"; botDiv.textContent="GPMSCTECH: "+e.message; box.appendChild(botDiv); } };
-$("chatInput").addEventListener("keypress",(e)=>{ if(e.key==="Enter") $("chatBtn").click(); });
-$("searchBtn").onclick = async()=>{ const q=$("globalSearch").value.trim(); if(!q){ $("searchResults").textContent="Write something to search."; return; } $("searchResults").textContent="Searching GPMSCTECH NEW BASE TECHNOLOGY..."; try{ const res=await globalSearch({query:q}); let html=`<b>GPMSCTECH NEW BASE TECHNOLOGY - Results ${res.data.count} for "${res.data.query}"</b><br><br>`; res.data.results.forEach(r=>{ html+=`🔹 [${r.category}] ${r.title||r.description}<br>🔗 ${r.link||"Contact: +255717314652"}<br><br>`; }); $("searchResults").innerHTML=html; }catch(e){ $("searchResults").textContent=e.message; } };
-$("globalSearch").addEventListener("keypress",(e)=>{ if(e.key==="Enter") $("searchBtn").click(); });
-$("adminListBtn").onclick = async()=>{ try{ const res=await adminListByEntityType({entityType:$("adminFilter").value}); $("adminList").textContent=JSON.stringify(res.data.contributions,null,2); }catch(e){ $("adminList").textContent=e.message; } };
-$("globalStatusBtn").onclick = async()=>{ try{ const res=await getGlobalSystemStatus({}); $("globalStatusResult").textContent=JSON.stringify(res.data,null,2); }catch(e){ $("globalStatusResult").textContent=e.message; } };
-</script>
-<script>
-// LANGUAGE ENGINE - English First, Swahili Second, All Countries Auto - Google + Servers under @speed_awr360°
-const LANG_MAP={en:"English",sw:"Kiswahili",fr:"Français",es:"Español",pt:"Português",de:"Deutsch",it:"Italiano",ar:"Arabic",zh:"Chinese",hi:"Hindi",ja:"Japanese",ko:"Korean",ru:"Russian",nl:"Dutch",tr:"Turkish",am:"Amharic",ha:"Hausa",yo:"Yoruba",ig:"Igbo",zu:"Zulu",xh:"Xhosa",af:"Afrikaans",so:"Somali",rw:"Kinyarwanda",rn:"Kirundi",lg:"Luganda",sn:"Shona",ny:"Chichewa",st:"Sesotho",tn:"Setswana"};
-const COUNTRY_LANG={TZ:"sw",KE:"sw",UG:"sw",CD:"sw",RW:"rw",BI:"rn",ET:"am",NG:"ha",ZA:"zu",US:"en",GB:"en",CA:"en",AU:"en",IN:"hi",FR:"fr",ES:"es",PT:"pt",DE:"de",IT:"it",SA:"ar",EG:"ar",CN:"zh",JP:"ja",KR:"ko",RU:"ru",NL:"nl",TR:"tr",SO:"so",ZW:"sn",MW:"ny"};
-const translationsFull={
-en:{title:"GPMSCTECH NEW BASE TECHNOLOGY",subtitle:"GLOBAL COMPUTER SOFTWARE TECHNOLOGY SYSTEM",globalText:"All Computer Software Technology In The World Is Under GPMSCTECH NEW BASE TECHNOLOGY",worldUse:"The World Uses Computer Software Technology System - And That System Is GPMSCTECH NEW BASE TECHNOLOGY",askTitle:"💬 Ask GPMSCTECH - It Answers How To Get Service Only",payBtn:"Complete Payment - Will Be Processed Automatically / Kamilisha Malipo",registerBtn:"Register / Jisajili",loginBtn:"Login / Ingia",searchBtn:"Search Now / Tafuta Sasa",techBtn:"Send 20% Report - Will Be Processed Automatically",statementBtn:"View My Bank Statement + My E-Receipts",accessBtn:"Check If My Service Works Globally",auditBtn:"View My Truth Records",qrBtn:"Request QR Security",adminBtn:"View System Bank Statement",chatBtn:"Send to GPMSCTECH / Tuma kwa GPMSCTECH"},
-sw:{title:"GPMSCTECH NEW BASE TECHNOLOGY",subtitle:"MFUMO WA TEKNOLOJIA YA COMPUTER SOFTWARE DUNIANI",globalText:"Teknolojia Zote Za Computer Software Duniani Ziko Chini Ya GPMSCTECH NEW BASE TECHNOLOGY",worldUse:"Dunia Inatumia Computer Software Technology System - Na System Hiyo Ni GPMSCTECH NEW BASE TECHNOLOGY",askTitle:"💬 Uliza GPMSCTECH - Anajibu Namna ya Kupata Huduma Tu",payBtn:"Kamilisha Malipo - Itachakatwa Automatically / Complete Payment",registerBtn:"Jisajili / Register",loginBtn:"Ingia / Login",searchBtn:"Tafuta Sasa / Search Now",techBtn:"Tuma Ripoti ya 20% - Itachakatwa Automatically",statementBtn:"Angalia Bank Statement Yangu + E-Receipt Zangu",accessBtn:"Angalia Kama Huduma Yangu Inafanya Kazi Globally",auditBtn:"Angalia Kumbukumbu Zangu za Ukweli",qrBtn:"Omba QR Security",adminBtn:"Angalia Bank Statement ya Mfumo",chatBtn:"Tuma kwa GPMSCTECH / Send to GPMSCTECH"}
-};
-function detectUserLanguage(){ const saved=localStorage.getItem("gpmsctech_lang"); if(saved && saved!=="auto") return saved; const bl=(navigator.language||"en").toLowerCase().split("-")[0]; if(LANG_MAP[bl]) return bl; try{ const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""; if(tz.includes("Dar_es_Salaam")||tz.includes("Nairobi")||tz.includes("Kampala")) return "sw"; }catch(e){} return "en"; }
-async function detectCountryLanguage(){ try{ const res=await fetch("https://ipapi.co/json/"); const data=await res.json(); return COUNTRY_LANG[data.country_code]||"en"; }catch(e){ return detectUserLanguage(); } }
-async function changeLanguage(lang){ let finalLang=lang; if(lang==="auto"){ finalLang=await detectCountryLanguage(); document.getElementById("langStatus").textContent="Auto Detected: "+(LANG_MAP[finalLang]||finalLang)+" - Your country language detected automatically."; } else { document.getElementById("langStatus").textContent="Language: "+(LANG_MAP[lang]||lang); } localStorage.setItem("gpmsctech_lang",lang); document.documentElement.lang=finalLang; if(finalLang==="ar") document.body.style.direction="rtl"; else document.body.style.direction="ltr"; const t=translationsFull[finalLang]||translationsFull.en; const set=(id,val)=>{ const el=document.getElementById(id); if(el&&val) el.textContent=val; }; set("mainTitle",t.title); set("mainSubtitle",t.subtitle); set("globalText",t.globalText); set("worldUse",t.worldUse); set("askTitle",t.askTitle); set("payBtn",t.payBtn); set("registerBtn",t.registerBtn); set("loginBtn",t.loginBtn); set("searchBtn",t.searchBtn); set("techBtn",t.techBtn); set("statementBtn",t.statementBtn); set("accessBtn",t.accessBtn); set("auditBtn",t.auditBtn); set("qrBtn",t.qrBtn); set("adminStatementBtn",t.adminBtn); set("chatBtn",t.chatBtn); if(!translationsFull[finalLang] && window.google && window.google.translate){ const sel=document.querySelector(".goog-te-combo"); if(sel){ sel.value=finalLang; sel.dispatchEvent(new Event("change")); } } }
-window.addEventListener("load", async()=>{ const saved=localStorage.getItem("gpmsctech_lang"); const sel=document.getElementById("langSelect"); if(!saved){ const autoLang=detectUserLanguage(); if(sel) sel.value=autoLang; await changeLanguage(autoLang); } else { if(sel) sel.value=saved; await changeLanguage(saved); } });
-</script>
-<!-- GPMSCTECH LOCK - AKILI KAMILI - HAIHARIBU CODE NYINGINE -->
-<style>
-#payment-lock-overlay{position:fixed;inset:0;z-index:999999;background:#0000A0;color:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;font-family:Arial,sans-serif;overflow-y:auto}
-#payment-lock-overlay h1{color:#FFD700;font-size:28px;margin-bottom:10px}
-#payment-lock-overlay p{font-size:17px;line-height:1.6}
-.gpms-lipa-box{background:#fff;color:#000;border-radius:15px;padding:20px;margin-top:15px;width:100%;max-width:360px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.gpms-lipa-box h2{color:#008000;margin:0;font-size:22px}
-.gpms-lipa-number{font-size:38px;font-weight:900;letter-spacing:4px;color:#000;background:#FFE600;padding:10px;border-radius:10px;margin:10px 0}
-.gpms-copy-btn{background:#0000A0;color:#fff;font-weight:bold;padding:12px 20px;border:none;border-radius:10px;font-size:16px;cursor:pointer;width:100%}
-.gpms-wa-btn{background:#25D366;color:#fff;font-weight:bold;padding:13px 20px;border:none;border-radius:10px;font-size:16px;margin-top:10px;cursor:pointer;width:100%}
-body.gpms-locked{overflow:hidden!important}
-body.gpms-locked>*:not(#payment-lock-overlay){display:none!important}
-</style>
-<div id="payment-lock-overlay">
-  <h1>⛔ MUDA UMEISHA</h1>
-  <p><b>Special Time Imeisha.</b><br>Huduma imesimamishwa.<br>Hulipi = Hupati Huduma.</p>
-  <div class="gpms-lipa-box">
-    <h2>LIPA HAPA - TIPS / CRDB</h2>
-    <p style="font-size:14px;margin:5px 0">LIPA NAMBA</p>
-    <div class="gpms-lipa-number">10055686</div>
-    <p style="font-weight:bold;margin:5px 0">GARAJI JOSEPH MASAMBU</p>
-    <p style="font-size:13px">Lipa kwa M-Pesa, Tigo Pesa, Airtel Money,<br>Halopesa, Benki na Kadi kupitia TIPS</p>
-    <button class="gpms-copy-btn" type="button">📋 COPY LIPA NAMBA</button>
-    <button class="gpms-wa-btn" type="button">📩 NIMESHALIPA - TUMA UTHIBITISHO</button>
-    <p style="font-size:12px;color:#555;margin-top:10px">Baada ya kulipa, tuma uthibitisho WhatsApp<br>ili ufunguliwe mara moja.</p>
-  </div>
-  <p style="font-size:12px;margin-top:10px;opacity:.8">GPMSCTECH | @speed_awr360°<br>Kwa Neema ya Yesu Kristo Mungu Mwenyezi</p>
+<div id="mainSystem" style="display:none">
+<h1>Karibu @speed_awr360° 🎉</h1>
+<p>Umelipa. Sasa unaweza kutumia mfumo.</p>
+<p id="expiry"></p>
+<div><p>Hapa ndipo vipindi vya AWR vinaonekana.</p></div>
+<button onclick="logout()">Toka</button>
 </div>
 <script>
-(function(){
-  if(window.__GPMS_LOCK_LOADED__) return;
-  window.__GPMS_LOCK_LOADED__ = true;
-  var GPMS_DEADLINE = new Date('2026-11-10T23:59:59+03:00').getTime();
-  function gpmsHasPaid(){ try{ return localStorage.getItem('gpmsctech_paid')==='true'; }catch(e){ return false; } }
-  function gpmsCheckLock(){
-    var overlay = document.getElementById('payment-lock-overlay');
-    if(!overlay) return;
-    var now = Date.now();
-    if(now >= GPMS_DEADLINE && !gpmsHasPaid()){
-      overlay.style.display='flex';
-      if(document.body) document.body.classList.add('gpms-locked');
-    } else {
-      overlay.style.display='none';
-      if(document.body) document.body.classList.remove('gpms-locked');
-    }
-  }
-  function gpmsInit(){
-    var copyBtn = document.querySelector('.gpms-copy-btn');
-    var waBtn = document.querySelector('.gpms-wa-btn');
-    if(copyBtn) copyBtn.addEventListener('click', function(){ try{ navigator.clipboard.writeText("10055686").then(function(){ alert("Lipa Namba 10055686 Imecopywa!"); }); }catch(e){ prompt("Copy Lipa Namba:", "10055686"); } });
-    if(waBtn) waBtn.addEventListener('click', function(){ window.location.href="https://wa.me/255717314652?text=NIMESHALIPA%20GPMSCTECH%20Lipa%20Namba%2010055686%20-%20Nifungulie%20Tafadhali"; });
-    gpmsCheckLock();
-    setInterval(gpmsCheckLock, 1000);
-  }
-  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', gpmsInit); } else { gpmsInit(); }
-})();
+function showPay(){
+let phone=document.getElementById("phone").value.trim();
+let m=document.getElementById("months").value;
+if(!/^0[67][0-9]{8}$/.test(phone)){document.getElementById("msg").innerText="Weka namba sahihi. Mfano 0744000000";return;}
+let amount=m*20000;
+let box=document.getElementById("payBox");
+box.style.display="block";
+box.innerText="Lipa "+amount+" TZS kwenda Lipa Namba 10055686\nJina: GARAJI JOSEPH MASAMBU\nBank: CRDB BANK PLC\n\nBaada ya kulipa, ingiza Reference ya SMS.";
+document.getElementById("ref").style.display="block";
+document.getElementById("btnRef").style.display="block";
+document.getElementById("msg").innerText="Sasa lipa, halafu weka Reference.";
+localStorage.setItem("awr_phone",phone);
+localStorage.setItem("awr_months",m);
+localStorage.setItem("awr_amount",amount);
+}
+function sendRef(){
+let r=document.getElementById("ref").value.trim();
+if(r.length<4){document.getElementById("msg").innerText="Weka Reference ya SMS ya CRDB.";return;}
+localStorage.setItem("awr_ref",r);
+localStorage.setItem("awr_status","PENDING");
+document.getElementById("msg").innerText="Reference imepokelewa: "+r+". Subiri uthibitisho wa Admin. Ukishathibitishwa bonyeza Angalia Kama Nimeruhusiwa.";
+}
+function checkAccess(){
+if(localStorage.getItem("awr_status")==="ACTIVE"){
+document.getElementById("lockScreen").style.display="none";
+document.getElementById("mainSystem").style.display="block";
+document.getElementById("expiry").innerText="Subscription yako iko ACTIVE.";
+}else{
+document.getElementById("msg").innerText="Bado hujathibitishwa. Umetuma Reference? Subiri Admin akuthibitishe.";
+}
+}
+function logout(){localStorage.removeItem("awr_status");location.reload();}
+// Kwa kujaribu: andika ACTIVE kwenye console ili kufungua
+if(localStorage.getItem("awr_status")==="ACTIVE"){checkAccess();}
 </script>
-<!-- MWISHO WA GPMSCTECH LOCK - AKILI KAMILI -->
 </body>
 </html>
