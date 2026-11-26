@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin - @speed_awr360°</title>
+<!-- ADMIN LINK: https://gmasambu238-ui.github.io/gpmsctech-website/admin.html -->
 <style>
 body{font-family:Arial;background:#f4f4f4;margin:0;padding:20px}
 h1{color:#0b3d91;text-align:center}
@@ -18,7 +19,6 @@ button.del{background:#d00}
 </style>
 </head>
 <body>
-
 <div id="lock">
   <div id="lockBox">
     <h2>@speed_awr360°</h2>
@@ -26,26 +26,29 @@ button.del{background:#d00}
     <input id="secEmail" type="email" placeholder="1. Email ya Mhusika">
     <input id="secPass" type="password" placeholder="2. Password">
     <input id="sec2FA" placeholder="3. 2FA - 6 tarakimu">
-    <input id="secQR" placeholder="4. QR CODE - 1 hadi 12">
+    <input id="secQR" placeholder="4. QR CODE - Namba 1">
     <button onclick="fungua()">INGIA</button>
     <p id="secMsg" style="color:#ff4444"></p>
+    <p style="font-size:12px;color:#888">Admin: https://gmasambu238-ui.github.io/gpmsctech-website/admin.html</p>
   </div>
 </div>
-
 <div id="adminPanel">
 <h1>GPMSCTECH - Admin Panel</h1>
 <p style="text-align:center" id="status">Inapakia oda...</p>
 <div id="list"></div>
+<p style="text-align:center"><a href="https://gmasambu238-ui.github.io/gpmsctech-website/admin.html">Admin Link</a> | <a href="https://gmasambu238-ui.github.io/gpmsctech-website/">Tovuti</a></p>
 </div>
-
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script>
+const ADMIN_LINK = "https://gmasambu238-ui.github.io/gpmsctech-website/admin.html";
 const ALLOWED_EMAILS = ["gmasambu238@gmail.com","georgemasambu64@gmail.com"];
-let QR_CODES = {"1":false,"2":false,"3":false,"4":false,"5":false,"6":false,"7":false,"8":false,"9":false,"10":false,"11":false,"12":false};
+// Namba 1
+let QR_CODES = {
+"347963806554407195211009678967560675852774622373004157390845":false
+};
 let used = JSON.parse(localStorage.getItem("used_qr_speed_awr360") || "[]");
 used.forEach(c => { if(QR_CODES[c] !== undefined) QR_CODES[c] = true; });
-
 function fungua(){
   let email = document.getElementById("secEmail").value.trim().toLowerCase();
   let pass = document.getElementById("secPass").value.trim();
@@ -55,8 +58,8 @@ function fungua(){
   if(!ALLOWED_EMAILS.includes(email)){ msg.innerText = "KATALIWA: Email hii hairuhusiwi."; return; }
   if(pass.length < 6){ msg.innerText = "KATALIWA: Password si sahihi."; return; }
   if(twoFA.length !== 6){ msg.innerText = "KATALIWA: Ingiza 2FA 6 tarakimu."; return; }
-  if(QR_CODES[qr] === undefined){ msg.innerText = "KATALIWA: QR lazima iwe 1 hadi 12."; return; }
-  if(QR_CODES[qr] === true){ msg.innerText = "KATALIWA: Namba " + qr + " imeshatumika. Tumia nyingine."; return; }
+  if(QR_CODES[qr] === undefined){ msg.innerText = "KATALIWA: Hii Code haipo kwenye Namba 1."; return; }
+  if(QR_CODES[qr] === true){ msg.innerText = "KATALIWA: Code imeshatumika."; return; }
   QR_CODES[qr] = true;
   used.push(qr);
   localStorage.setItem("used_qr_speed_awr360", JSON.stringify(used));
@@ -64,7 +67,6 @@ function fungua(){
   document.getElementById("adminPanel").style.display = "block";
   loadOda();
 }
-
 const firebaseConfig = {
   apiKey: "AIzaSyBYmWzzWfvHkuRgHpQhvDzj6m0o8oRzHrw",
   authDomain: "gpmsctech-18abb.firebaseapp.com",
@@ -76,7 +78,6 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
 function loadOda(){
   db.collection("orders").orderBy("createdAt","desc").onSnapshot((snap)=>{
     const list = document.getElementById("list");
@@ -85,22 +86,11 @@ function loadOda(){
     if(snap.empty){ list.innerHTML = "<p>Hakuna oda bado.</p>"; return; }
     snap.forEach((doc)=>{
       const d = doc.data();
-      list.innerHTML += `<div class="card">
-        <b>${d.name || d.jina || 'Mteja'}</b> - ${d.phone || d.sim || ''}<br>
-        Email: ${d.email || ''}<br>
-        Huduma: ${d.service || d.huduma || ''}<br>
-        Ujumbe: ${d.message || d.ujumbe || ''}<br>
-        <small>${d.createdAt ? d.createdAt.toDate() : ''}</small><br><br>
-        <button class="del" onclick="futa('${doc.id}')">Futa</button>
-      </div>`;
+      list.innerHTML += `<div class="card"><b>${d.name || d.jina || 'Mteja'}</b> - ${d.phone || d.sim || ''}<br>Email: ${d.email || ''}<br>Huduma: ${d.service || d.huduma || ''}<br>Ujumbe: ${d.message || d.ujumbe || ''}<br><small>${d.createdAt ? d.createdAt.toDate() : ''}</small><br><br><button class="del" onclick="futa('${doc.id}')">Futa</button></div>`;
     });
-  }, (err)=>{
-    document.getElementById("status").innerText = "Error: " + err.message;
-  });
+  }, (err)=>{ document.getElementById("status").innerText = "Error: " + err.message; });
 }
-function futa(id){
-  if(confirm("Futa hii oda?")){ db.collection("orders").doc(id).delete(); }
-}
+function futa(id){ if(confirm("Futa hii oda?")){ db.collection("orders").doc(id).delete(); } }
 </script>
 </body>
 </html>
