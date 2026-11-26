@@ -35,5 +35,16 @@ async function loadUsers(){
 window.toggle=async(id,val)=>{ await updateDoc(doc(db,"users",id),{isPaid:val}); loadUsers(); }
 loadUsers();
 </script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init("VjAQ-puV445mQlrTy");
+function sendAdminOTP(email, otpCode){
+  return emailjs.send("service_3lq3gyt","template_kq5gynl",{
+    to_email: email,
+    passcode: otpCode,
+    time: "15 minutes"
+  });
+}
+</script>
 </body>
 </html>
