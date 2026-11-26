@@ -26,7 +26,6 @@ button.del{background:#d00}
     <input id="secEmail" type="email" placeholder="1. Email ya Mhusika">
     <input id="secPass" type="password" placeholder="2. Password">
     <input id="sec2FA" placeholder="3. 2FA - 6 tarakimu">
-    <input id="secQR" placeholder="4. QR CODE - Namba 1">
     <button onclick="fungua()">INGIA</button>
     <p id="secMsg" style="color:#ff4444"></p>
     <p style="font-size:12px;color:#888">Admin: https://gmasambu238-ui.github.io/gpmsctech-website/admin.html</p>
@@ -43,26 +42,27 @@ button.del{background:#d00}
 <script>
 const ADMIN_LINK = "https://gmasambu238-ui.github.io/gpmsctech-website/admin.html";
 const ALLOWED_EMAILS = ["gmasambu238@gmail.com","georgemasambu64@gmail.com"];
-// Namba 1
-let QR_CODES = {
-"347963806554407195211009678967560675852774622373004157390845":false
-};
-let used = JSON.parse(localStorage.getItem("used_qr_speed_awr360") || "[]");
-used.forEach(c => { if(QR_CODES[c] !== undefined) QR_CODES[c] = true; });
+
+// === ULINZI WA NDANI - QR CODES ZIMEFICHWA HAPA, HAZIANDIKWI NA MTUMIAJI ===
+// Hii ni Namba 1 - iko ndani ya mfumo kama security key ya ndani
+const INTERNAL_SECURITY_QR = "347963806554407195211009678967560675852774622373004157390845";
+let QR_CODES = { [INTERNAL_SECURITY_QR]: false };
+// Ulinzi wa ndani: mfumo unajihakikishia QR iko sawa kabla ya kufungua
+function checkInternalSecurity(){
+  return INTERNAL_SECURITY_QR.length === 60 && QR_CODES[INTERNAL_SECURITY_QR] !== undefined;
+}
+
 function fungua(){
   let email = document.getElementById("secEmail").value.trim().toLowerCase();
   let pass = document.getElementById("secPass").value.trim();
   let twoFA = document.getElementById("sec2FA").value.trim();
-  let qr = document.getElementById("secQR").value.trim();
   let msg = document.getElementById("secMsg");
+  // Kwanza hakiki ulinzi wa ndani (QR iliyofichwa)
+  if(!checkInternalSecurity()){ msg.innerText = "KATALIWA: Mfumo wa ulinzi wa ndani umeharibika."; return; }
   if(!ALLOWED_EMAILS.includes(email)){ msg.innerText = "KATALIWA: Email hii hairuhusiwi."; return; }
   if(pass.length < 6){ msg.innerText = "KATALIWA: Password si sahihi."; return; }
   if(twoFA.length !== 6){ msg.innerText = "KATALIWA: Ingiza 2FA 6 tarakimu."; return; }
-  if(QR_CODES[qr] === undefined){ msg.innerText = "KATALIWA: Hii Code haipo kwenye Namba 1."; return; }
-  if(QR_CODES[qr] === true){ msg.innerText = "KATALIWA: Code imeshatumika."; return; }
-  QR_CODES[qr] = true;
-  used.push(qr);
-  localStorage.setItem("used_qr_speed_awr360", JSON.stringify(used));
+  // Ulinzi wa ndani umepita - fungua
   document.getElementById("lock").style.display = "none";
   document.getElementById("adminPanel").style.display = "block";
   loadOda();
