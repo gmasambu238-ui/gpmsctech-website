@@ -6,18 +6,19 @@
 <title>GPMSCTECH - Admin - @speed_awr360</title>
 <style>
 *{box-sizing:border-box} body{font-family:Arial;background:#000;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;padding:15px}
-.box{border:2px solid #22c55e;border-radius:20px;padding:28px;width:100%;max-width:420px;background:#0a0a0a;box-shadow:0 0 20px rgba(34,197,94,.2)}
+.box{border:2px solid #22c55e;border-radius:20px;padding:28px;width:100%;max-width:420px;background:#0a0a0a}
 h2{text-align:center;margin:0;font-size:28px} .sub{text-align:center;font-size:16px;margin:10px 0 0}
 .lock{font-size:12px;color:#22c55e;text-align:center;margin-top:8px;font-weight:700}
 label{display:block;margin-top:18px;font-size:14px;font-weight:700}
 input{width:100%;padding:14px;margin-top:6px;border:1px solid #333;border-radius:10px;background:#1a1a1a;color:#fff;font-size:16px;outline:none}
-input:focus{border-color:#22c55e} input:disabled{background:#2a2a2a;color:#fff;cursor:not-allowed}
+input:focus{border-color:#22c55e} input:disabled{background:#2a2a2a;color:#fff}
 button{width:100%;padding:15px;margin-top:22px;background:#22c55e;color:#000;font-weight:900;border:0;border-radius:10px;font-size:17px;cursor:pointer}
-#msg{text-align:center;margin-top:13px;font-size:15px;color:#ff4444;min-height:20px}
+#msg{text-align:center;margin-top:13px;font-size:15px;color:#ff4444;min-height:20px;background:#1a1a1a;padding:10px;border-radius:8px}
 .hint{text-align:center;font-size:12px;color:#aaa;margin-top:6px;line-height:1.6}
 .counter{text-align:right;font-size:12px;color:#22c55e;margin-top:4px;font-weight:700}
 .fb{margin-top:18px;background:#1877F2;padding:12px;border-radius:10px;text-align:center;font-size:13px;line-height:1.5}
 .fb a{color:#fff;font-weight:700;word-break:break-all}
+.reset{text-align:center;margin-top:12px;font-size:12px;color:#aaa;cursor:pointer;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -27,10 +28,10 @@ button{width:100%;padding:15px;margin-top:22px;background:#22c55e;color:#000;fon
 <div class="lock">🔒 SECURITY 8 - Zimefungwa, Hazibadiliki Kamwe</div>
 
 <label>1. Email Address</label>
-<input id="email" type="email" placeholder="Email yako" autocomplete="email">
+<input id="email" type="email" placeholder="Email yako">
 
 <label>2. Password</label>
-<input id="pass" type="password" placeholder="Password yako" autocomplete="current-password">
+<input id="pass" type="password" placeholder="Password yako">
 
 <label>3. 2FA - Tarakimu Sita</label>
 <input id="fa" type="text" inputmode="numeric" maxlength="6" placeholder="Weka 2FA - Tarakimu Sita">
@@ -38,25 +39,23 @@ button{width:100%;padding:15px;margin-top:22px;background:#22c55e;color:#000;fon
 <label>4. QR CODE - Mafungu 12 ya Namba Tano Tano</label>
 <input id="qr" type="text" value="34796-38065-54407-19521-10096-78967-56067-58527-74622-37300-41573-90845" disabled>
 <div class="counter">Mafungu: 12 / 12 - Namba: 60 / 60</div>
-<div class="hint">QR Code ni mafungu 12 ya namba tano tano.<br>Jumla yake ni namba 60.<br>Zimefungwa kama zilivyo, hazibadiliki kamwe.</div>
 
 <div class="fb">
 🔒 SECURITY 8 - FACEBOOK LINK IMEFUNGWA<br>
 <b>#UKUU_WA_UTATU_MTAKATIFU</b><br>
 <a id="fbLink" href="https://www.facebook.com/share/p/1E4jsxMoAr/" target="_blank">https://www.facebook.com/share/p/1E4jsxMoAr/</a>
-<br><span style="font-size:11px">Link hii imefungwa kwenye Security, haibadiliki kamwe.</span>
 </div>
 
 <button id="btn" onclick="login()">INGIA</button>
-<div id="msg"></div>
+<div id="msg">Karibu Mkuu, jaza na ubonyeze INGIA.</div>
+<div class="reset" onclick="resetAll()">Futa Kufunga Kwa Zamani - Bonyeza Hapa Kama Imefungwa</div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-// ===== FIREBASE CONFIG - API YAKO HALISI ULIYONIPA =====
-const firebaseConfig = {
+<!-- FIREBASE BILA MODULE - HII NDIO INAYOFANYA KAZI KWENYE GITHUB -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script>
+var firebaseConfig = {
   apiKey: "AIzaSyBYmWzzWfvHkuRgHpQhvDzj6m0o8oRzHrw",
   authDomain: "gpmsctech-18abb.firebaseapp.com",
   projectId: "gpmsctech-18abb",
@@ -65,22 +64,34 @@ const firebaseConfig = {
   appId: "1:554624850081:web:ac5884fdd893a540ed78e0",
   measurementId: "G-G1CX44BC95"
 };
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+try{ firebase.initializeApp(firebaseConfig); }catch(e){}
+var auth = firebase.auth();
 
-// ===== SECURITY 8 - ZOTE IMEUNGANISHWA KAMA ULICHONIAGIZA =====
-const QR_CODE_KAMILI = "34796-38065-54407-19521-10096-78967-56067-58527-74622-37300-41573-90845";
-const QR_DIGITS = "347963806554407195211009678967560675852774622373004157390845";
-const FACEBOOK_LINK_KAMILI = "https://www.facebook.com/share/p/1E4jsxMoAr/";
-const FACEBOOK_POST_TITLE = "#UKUU_WA_UTATU_MTAKATIFU - Danieli 12:1";
+var QR_CODE_KAMILI = "34796-38065-54407-19521-10096-78967-56067-58527-74622-37300-41573-90845";
+var QR_DIGITS = "347963806554407195211009678967560675852774622373004157390845";
+var FACEBOOK_LINK_KAMILI = "https://www.facebook.com/share/p/1E4jsxMoAr/";
+var KEY = "gpmsc_final_locked_v7";
 
-const KEY = "gpmsc_final_locked_v7";
-async function hash(t){ const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join(""); }
+function showMsg(t, color){
+  var m = document.getElementById('msg');
+  m.textContent = t;
+  m.style.color = color || "#ff4444";
+}
+
+function resetAll(){
+  localStorage.removeItem(KEY);
+  localStorage.removeItem("gpmsc_admin");
+  document.getElementById('email').disabled = false;
+  document.getElementById('email').value = "";
+  document.getElementById('fa').disabled = false;
+  document.getElementById('fa').value = "";
+  showMsg("Kufunga kwa zamani kumefutwa. Jaza upya sasa.", "#22c55e");
+}
 
 function loadLocked(){
   try{
-    const s = JSON.parse(localStorage.getItem(KEY));
-    if(s && s.email && s.faHash && s.qrHash && s.fbHash){
+    var s = JSON.parse(localStorage.getItem(KEY));
+    if(s && s.email){
       document.getElementById('email').value = s.email;
       document.getElementById('email').disabled = true;
       document.getElementById('fa').disabled = true;
@@ -90,66 +101,62 @@ function loadLocked(){
   }catch(e){}
   return null;
 }
-let locked = loadLocked();
+var locked = loadLocked();
 
-window.login = async function(){
-  const emailEl = document.getElementById('email');
-  const passEl = document.getElementById('pass');
-  const faEl = document.getElementById('fa');
-  const qrEl = document.getElementById('qr');
-  const msg = document.getElementById('msg');
-  const btn = document.getElementById('btn');
-  const email = emailEl.value.trim();
-  const pass = passEl.value;
-  const fa = faEl.value.trim();
-  const qrValue = qrEl.value.trim();
-  const fbValue = document.getElementById('fbLink').href;
+async function hash(t){
+  var b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+  return Array.from(new Uint8Array(b)).map(function(x){ return x.toString(16).padStart(2,"0"); }).join("");
+}
 
-  msg.style.color = "#ff4444";
-  if(!email || !pass){ msg.textContent = "Tafadhali jaza Email na Password."; return; }
-  if(!locked && (!fa || fa.length !== 6)){ msg.textContent = "2FA lazima iwe tarakimu sita."; return; }
+async function login(){
+  showMsg("Nimepokea kubonyeza kwako... Inahakiki...", "#22c55e");
+  var emailEl = document.getElementById('email');
+  var passEl = document.getElementById('pass');
+  var faEl = document.getElementById('fa');
+  var qrEl = document.getElementById('qr');
+  var btn = document.getElementById('btn');
+  var email = emailEl.value.trim();
+  var pass = passEl.value;
+  var fa = faEl.value.trim();
+  var qrValue = qrEl.value.trim();
+  var fbValue = document.getElementById('fbLink').href;
 
-  // 4. HAKIKI QR - MAFUNGU 12 YA NAMBA TANO TANO - KAMA ULICHONIAGIZA
-  const digits = qrValue.replace(/\D/g, "");
-  const mafungu = qrValue.split("-");
-  function mafunguKamili(arr){ return arr.every(g => g.length === 5 && /^\d{5}$/.test(g)); }
-  if(qrValue !== QR_CODE_KAMILI || mafungu.length !== 12 || digits.length !== 60 || !mafuguKamili(mafungu)){
-    msg.textContent = "KATALIWA: QR Code lazima iwe mafungu 12 ya namba tano tano.";
+  if(!email || !pass){ showMsg("Tafadhali jaza Email na Password."); return; }
+  if(!locked && (!fa || fa.length !== 6)){ showMsg("2FA lazima iwe tarakimu sita."); return; }
+
+  var digits = qrValue.replace(/\D/g, "");
+  var mafungu = qrValue.split("-");
+  var okMafungu = mafungu.every(function(g){ return g.length === 5 && /^\d{5}$/.test(g); });
+  if(qrValue !== QR_CODE_KAMILI || mafungu.length !== 12 || digits.length !== 60 || !okMafungu){
+    showMsg("KATALIWA: QR Code lazima iwe mafungu 12 ya namba tano tano.");
     qrEl.value = QR_CODE_KAMILI;
     return;
   }
-
-  // 8. HAKIKI FACEBOOK LINK - IMEUNGANISHWA KWENYE SECURITY KAMA ULICHONIAGIZA
   if(!fbValue.includes("1E4jsxMoAr") || fbValue !== FACEBOOK_LINK_KAMILI){
-    msg.textContent = "KATALIWA: Facebook Link ya Security haipo sahihi.";
+    showMsg("KATALIWA: Facebook Link ya Security haipo sahihi.");
     document.getElementById('fbLink').href = FACEBOOK_LINK_KAMILI;
     return;
   }
-
-  if(locked && email !== locked.email){ msg.textContent = "Email imefungwa, haibadiliki kamwe."; emailEl.value = locked.email; return; }
+  if(locked && email !== locked.email){ showMsg("Email imefungwa, haibadiliki kamwe. Bonyeza Futa Kufunga chini kama ni wewe."); emailEl.value = locked.email; return; }
 
   try{
     btn.disabled = true;
-    msg.style.color = "#22c55e";
-    msg.textContent = "Inahakiki kwenye Firebase...";
-    await signInWithEmailAndPassword(auth, email, pass);
+    showMsg("Inahakiki kwenye Firebase...", "#22c55e");
+    await auth.signInWithEmailAndPassword(email, pass);
     if(!locked){
-      const faHash = await hash(fa);
-      const qrHash = await hash(QR_DIGITS);
-      const fbHash = await hash(FACEBOOK_LINK_KAMILI);
+      var faHash = await hash(fa);
+      var qrHash = await hash(QR_DIGITS);
+      var fbHash = await hash(FACEBOOK_LINK_KAMILI);
       locked = { email: email, faHash: faHash, qrHash: qrHash, fbHash: fbHash };
       localStorage.setItem(KEY, JSON.stringify(locked));
-      emailEl.disabled = true;
-      faEl.disabled = true;
     }
-    msg.textContent = "Karibu Mkuu! Unaingia...";
+    showMsg("Karibu Mkuu! Unaingia...", "#22c55e");
     localStorage.setItem("gpmsc_admin","yes");
-    setTimeout(()=>{ window.location.href = "index.html"; }, 800);
+    setTimeout(function(){ window.location.href = "index.html"; }, 800);
   }catch(e){
-    try{ await signOut(auth); }catch(_){}
+    try{ await auth.signOut(); }catch(_){}
     btn.disabled = false;
-    msg.style.color = "#ff4444";
-    msg.textContent = "Email au Password si sahihi. Huna ruhusa kuingia.";
+    showMsg("Email au Password si sahihi. Kosa: " + e.code + " - " + e.message);
   }
 }
 </script>
