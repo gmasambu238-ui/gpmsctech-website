@@ -49,12 +49,17 @@ button:active{transform:scale(.98)}
 </div>
 
 <script>
+// ===== MFUMO WA ULINZI - HAUBADILIKI KAMWE =====
 // QR IMEFICHWA - MFUMO UNAIHAKIKI KIMYA KIMYA, HAKUNA KUIANDIKA
 const HIDDEN_QR = ["@speed_awr360°-QR-1-A9X7","@speed_awr360°-QR-2-K4M2","@speed_awr360°-QR-3-Z8P1"];
 const SPEED_TAG = "@speed_awr360°";
+
+// ===== VIGEZO 3 VYA ADMIN - VYA KUDUMU, HAVIBADILIKI KAMWE =====
 const ADMIN_EMAIL = "georgemasambu64@gmail.com";
 const ADMIN_PASS = "GPMSCTECH@2026";
 const ADMIN_2FA = "123456";
+
+// ===== KIFULI CHA MALIPO - BILA HII HAKUNA KUINGIA =====
 const PAID_CODE = "GPMSC-PAID-2026";
 
 function login(){
@@ -64,18 +69,20 @@ function login(){
   const pay = document.getElementById('pay').value.trim();
   const msg = document.getElementById('msg');
 
-  // Hakiki QR iliyofichwa kimya kimya - mtu haoni, haiandikwi
+  // 1. Hakiki QR iliyofichwa kimya kimya
   if(!HIDDEN_QR || HIDDEN_QR.length !== 3 || !HIDDEN_QR[0].includes(SPEED_TAG)){
     msg.textContent = "Mfumo umezuiwa: Ulinzi umekosekana.";
     return;
   }
+  // 2. Hakiki MALIPO KWANZA - Bila kulipia hakuna kuingia
   if(pay !== PAID_CODE){ msg.textContent = "Hujalipia! Lipa kwanza ndio upate CODE YA MALIPO."; return; }
+  // 3. Hakiki VIGEZO 3
   if(e !== ADMIN_EMAIL){ msg.textContent = "Email si sahihi."; return; }
   if(p !== ADMIN_PASS){ msg.textContent = "Password si sahihi."; return; }
   if(f !== ADMIN_2FA){ msg.textContent = "2FA si sahihi."; return; }
 
   msg.style.color = "#22c55e";
-  msg.textContent = "Karibu Mkuu! Unaingia...";
+  msg.textContent = "Karibu Mkuu! Malipo yamethibitishwa, Unaingia...";
   localStorage.setItem("gpmsc_admin","yes");
   localStorage.setItem("gpmsc_paid","yes");
   setTimeout(()=>{ window.location.href = "index.html"; }, 800);
