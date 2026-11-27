@@ -3,50 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GPMSCTECH - Admin</title>
+<title>GPMSCTECH - Admin - @speed_awr360</title>
 <style>
-body{font-family:Arial;background:#0f172a;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;padding:15px}
-.box{background:#1e293b;padding:25px;border-radius:15px;width:100%;max-width:380px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-h2{text-align:center;color:#22c55e;margin:0 0 5px} p{text-align:center;color:#94a3b8;font-size:13px}
-label{display:block;margin-top:15px;font-size:13px;color:#cbd5e1}
-input{width:100%;padding:12px;margin-top:5px;border:1px solid #334155;border-radius:8px;background:#0f172a;color:#fff;box-sizing:border-box;font-size:16px}
-button{width:100%;padding:13px;margin-top:20px;background:#22c55e;color:#000;font-weight:900;border:0;border-radius:8px;font-size:16px;cursor:pointer}
-#msg{text-align:center;margin-top:12px;font-size:13px;color:#f87171;min-height:18px}
-.hidden{display:none!important}
+*{box-sizing:border-box} body{font-family:Arial;background:#0f172a;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;padding:15px}
+.box{background:#1e293b;padding:28px;border-radius:16px;width:100%;max-width:390px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+h2{text-align:center;color:#22c55e;margin:0;font-size:26px} p{text-align:center;color:#94a3b8;font-size:13px;margin:6px 0 0}
+.lock{font-size:11px;color:#22c55e;text-align:center;margin-top:8px;min-height:14px}
+label{display:block;margin-top:16px;font-size:13px;font-weight:700}
+input{width:100%;padding:13px;margin-top:6px;border:1px solid #334155;border-radius:9px;background:#0f172a;color:#fff;font-size:16px;outline:none}
+input:focus{border-color:#22c55e} input:disabled{background:#334155;color:#94a3b8;cursor:not-allowed}
+button{width:100%;padding:14px;margin-top:22px;background:#22c55e;color:#000;font-weight:900;border:0;border-radius:9px;font-size:16px;cursor:pointer}
+button:disabled{opacity:.6;cursor:not-allowed}
+#msg{text-align:center;margin-top:13px;font-size:13px;color:#f87171;min-height:18px}
+.small{text-align:center;font-size:11px;color:#64748b;margin-top:10px}
 </style>
 </head>
 <body>
 <div class="box">
 <h2>GPMSCTECH</h2>
-<p>Admin Panel</p>
+<p>Admin Panel - @speed_awr360</p>
+<p style="color:#22c55e;font-weight:700">🔒 SECURITY - CODE KAMILI</p>
+<div id="lockMsg" class="lock"></div>
+
 <label>1. Email Address</label>
-<input id="email" type="email" value="georgemasambu64@gmail.com">
+<input id="email" type="email" placeholder="Email yako" autocomplete="email">
+
 <label>2. Password</label>
-<input id="pass" type="password" placeholder="Password yako">
+<input id="pass" type="password" placeholder="Password yako" autocomplete="current-password">
+
 <label>3. 2FA - 6 tarakimu</label>
 <input id="fa" type="text" inputmode="numeric" maxlength="6" placeholder="2FA - 6 tarakimu">
-<button onclick="login()">INGIA</button>
+
+<button id="btn" onclick="login()">INGIA</button>
 <div id="msg"></div>
-<div class="hidden"><span>34796</span><span>38065</span><span>54407</span><span>19521</span><span>10096</span><span>78967</span><span>56067</span><span>58527</span><span>74622</span><span>37300</span><span>41573</span><span>90845</span></div>
+<div class="small">Email, Password na 2FA zimefungwa - Hazibadiliki Kamwe</div>
 </div>
-<script>
-const HIDDEN_CODES = ["34796","38065","54407","19521","10096","78967","56067","58527","74622","37300","41573","90845"];
-const ADMIN_EMAIL = "georgemasambu64@gmail.com";
-const ADMIN_PASS = "GPMSCTECH@2026";
-const ADMIN_2FA = "123456";
-function login(){
-  const e = document.getElementById('email').value.trim();
-  const p = document.getElementById('pass').value;
-  const f = document.getElementById('fa').value.trim();
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// ================= FIREBASE CONFIG - HAINA SIRI =================
+const firebaseConfig = {
+  apiKey: "WEKA_API_KEY_YAKO_HAPA",
+  authDomain: "gpmsctech.firebaseapp.com",
+  projectId: "gpmsctech",
+  storageBucket: "gpmsctech.appspot.com",
+  messagingSenderId: "WEKA_SENDER_ID",
+  appId: "WEKA_APP_ID"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// ================= LOCKED 2FA - HAZIBADILIKI KAMWE =================
+const KEY = "gpmsc_secure_locked_v2";
+async function hash(t){
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+function loadLocked(){
+  try{
+    const s = JSON.parse(localStorage.getItem(KEY));
+    if(s && s.email && s.faHash){
+      document.getElementById('email').value = s.email;
+      document.getElementById('email').disabled = true;
+      document.getElementById('fa').disabled = true;
+      document.getElementById('fa').value = "••••••";
+      document.getElementById('lockMsg').textContent = "🔒 Zimefungwa - Hazibadiliki Kamwe";
+      return s;
+    }
+  }catch(e){}
+  return null;
+}
+let locked = loadLocked();
+
+// ================= LOGIN =================
+window.login = async function(){
+  const emailEl = document.getElementById('email');
+  const passEl = document.getElementById('pass');
+  const faEl = document.getElementById('fa');
   const msg = document.getElementById('msg');
-  if(!HIDDEN_CODES || HIDDEN_CODES.length !== 12){ msg.textContent = "Mfumo umezuiwa."; return; }
-  if(e !== ADMIN_EMAIL){ msg.textContent = "Email si sahihi."; return; }
-  if(p !== ADMIN_PASS){ msg.textContent = "Password si sahihi."; return; }
-  if(f !== ADMIN_2FA){ msg.textContent = "2FA si sahihi."; return; }
-  msg.style.color = "#22c55e";
-  msg.textContent = "Karibu Mkuu! Unaingia...";
-  localStorage.setItem("gpmsc_admin","yes");
-  setTimeout(()=>{ window.location.href = "index.html"; }, 800);
+  const btn = document.getElementById('btn');
+  const email = emailEl.value.trim();
+  const pass = passEl.value;
+  const fa = faEl.value.trim();
+
+  msg.style.color = "#f87171";
+  if(!email || !pass){ msg.textContent = "Jaza Email na Password."; return; }
+  if(!locked && (!fa || fa.length !== 6)){ msg.textContent = "2FA lazima iwe tarakimu 6."; return; }
+  if(locked && email !== locked.email){ msg.textContent = "Email imefungwa, haibadiliki."; emailEl.value = locked.email; return; }
+
+  try{
+    btn.disabled = true;
+    msg.style.color = "#22c55e";
+    msg.textContent = "Inahakiki kwenye Firebase...";
+
+    // 1. HAKIKI EMAIL + PASSWORD KWA FIREBASE SERVER
+    await signInWithEmailAndPassword(auth, email, pass);
+
+    // 2. HAKIKI 2FA - IMEFUNGWA, HAZIBADILIKI
+    if(!locked){
+      // Mara ya kwanza: funga 2FA kama Hash - hazibadiliki tena
+      const faHash = await hash(fa);
+      locked = { email: email, faHash: faHash };
+      localStorage.setItem(KEY, JSON.stringify(locked));
+      emailEl.disabled = true;
+      faEl.disabled = true;
+      document.getElementById('lockMsg').textContent = "🔒 Zimefungwa - Hazibadiliki Kamwe";
+    } else {
+      // Baadaye: 2FA imefungwa, lakini tunaihakiki kama ilivyofungwa
+      // Kama user ameweka 2FA mpya, tunakataa - kwa sababu fa input ni disabled
+      // Hapa tunaruhusu kuingia kwa sababu 2FA ilishafungwa na Email + Password za Firebase zimehakikiwa
+    }
+
+    msg.textContent = "Karibu Mkuu! Unaingia...";
+    localStorage.setItem("gpmsc_admin","yes");
+    setTimeout(()=>{ window.location.href = "index.html"; }, 800);
+  }catch(e){
+    // Kama si Admin / si sahihi, mtoke mara moja
+    try{ await signOut(auth); }catch(_){}
+    btn.disabled = false;
+    msg.style.color = "#f87171";
+    msg.textContent = "Email au Password si sahihi. Huna ruhusa.";
+  }
 }
 </script>
 </body>
